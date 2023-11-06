@@ -1,4 +1,6 @@
 package com.cesur.aplicaciondual.domain.entities.profesor;
 
-public class Profesor {
+import java.io.Serializable;
+
+public class Profesor implements Serializable {
 }

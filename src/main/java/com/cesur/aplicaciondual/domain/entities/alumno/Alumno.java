@@ -1,4 +1,6 @@
 package com.cesur.aplicaciondual.domain.entities.alumno;
 
-public class Alumno {
+import java.io.Serializable;
+
+public class Alumno implements Serializable {
 }
