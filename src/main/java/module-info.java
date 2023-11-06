@@ -1,6 +1,7 @@
 module com.cesur.aplicaciondual {
     requires javafx.controls;
     requires javafx.fxml;
+    requires org.hibernate.orm.core;
 
 
     opens com.cesur.aplicaciondual to javafx.fxml;
