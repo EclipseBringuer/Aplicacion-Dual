@@ -69,4 +69,26 @@ public class Profesor implements Serializable {
     public void setAlumnos(List<Alumno> alumnos) {
         this.alumnos = alumnos;
     }
+
+    @Override
+    public String toString() {
+        return "Profesor{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", email='" + email + '\'' +
+                ", pass='" + pass + '\'' +
+                ", alumnos=" + alumnos +
+                '}';
+    }
+
+    public void addAlumno(Alumno a){
+        a.setTutor(this);
+        alumnos.add(a);
+    }
+
+    public void removeAlumno(Alumno a){
+        alumnos.remove(a);
+        a.setTutor(null);
+    }
 }
