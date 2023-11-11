@@ -14,5 +14,9 @@
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
 
+        <mapping class="com.cesur.aplicaciondual.domain.entities.alumno.Alumno"/>
+        <mapping class="com.cesur.aplicaciondual.domain.entities.empresa.Empresa"/>
+        <mapping class="com.cesur.aplicaciondual.domain.entities.actividad.Actividad"/>
+        <mapping class="com.cesur.aplicaciondual.domain.entities.profesor.Profesor"/>
     </session-factory>
 </hibernate-configuration>

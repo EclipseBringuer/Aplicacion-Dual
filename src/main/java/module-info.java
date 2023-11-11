@@ -3,6 +3,7 @@ module com.cesur.aplicaciondual {
     requires javafx.fxml;
     requires org.hibernate.orm.core;
     requires java.sql;
+    requires jakarta.persistence;
 
 
     opens com.cesur.aplicaciondual to javafx.fxml;
