@@ -4,7 +4,6 @@ import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -12,23 +11,33 @@ import java.util.List;
 @Table(name = "alumno")
 public class Alumno implements Serializable {
     @Id
+    @Column(name = "dni")
     private String dni;
     @ManyToOne
     @JoinColumn(name = "id_tutor")
-    private Profesor tutor;
+    private Profesor profesor;
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
     @OneToMany(mappedBy = "alumno")
     private List<Actividad> actividades;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "apellidos")
     private String apellidos;
+    @Column(name = "pass")
     private String pass;
+    @Column(name = "fecha_nac")
     private String fecha_nac;
+    @Column(name = "email")
     private String email;
+    @Column(name = "telefono")
     private String telefono;
-    private Integer num_horas_dual;
-    private Integer num_horas_fct;
+    @Column(name = "num_horas_dual")
+    private Integer dual;
+    @Column(name = "num_horas_fct")
+    private Integer fct;
+    @Column(name = "observaciones")
     private String observaciones;
 
     public Alumno(){}
@@ -41,12 +50,12 @@ public class Alumno implements Serializable {
         this.dni = dni;
     }
 
-    public Profesor getTutor() {
-        return tutor;
+    public Profesor getProfesor() {
+        return profesor;
     }
 
-    public void setTutor(Profesor tutor) {
-        this.tutor = tutor;
+    public void setProfesor(Profesor profesor) {
+        this.profesor = profesor;
     }
 
     public Empresa getEmpresa() {
@@ -113,20 +122,20 @@ public class Alumno implements Serializable {
         this.telefono = telefono;
     }
 
-    public Integer getNum_horas_dual() {
-        return num_horas_dual;
+    public Integer getDual() {
+        return dual;
     }
 
-    public void setNum_horas_dual(Integer num_horas_dual) {
-        this.num_horas_dual = num_horas_dual;
+    public void setDual(Integer num_horas_dual) {
+        this.dual = num_horas_dual;
     }
 
-    public Integer getNum_horas_fct() {
-        return num_horas_fct;
+    public Integer getFct() {
+        return fct;
     }
 
-    public void setNum_horas_fct(Integer num_horas_fct) {
-        this.num_horas_fct = num_horas_fct;
+    public void setFct(Integer num_horas_fct) {
+        this.fct = num_horas_fct;
     }
 
     public String getObservaciones() {
@@ -141,7 +150,7 @@ public class Alumno implements Serializable {
     public String toString() {
         return "Alumno{" +
                 "dni='" + dni + '\'' +
-                ", tutor=" + tutor.getNombre() +
+                ", tutor=" + profesor.getNombre() +
                 ", empresa=" + empresa.getNombre() +
                 ", actividades=" + actividades +
                 ", nombre='" + nombre + '\'' +
@@ -150,8 +159,8 @@ public class Alumno implements Serializable {
                 ", fecha_nac='" + fecha_nac + '\'' +
                 ", email='" + email + '\'' +
                 ", telefono='" + telefono + '\'' +
-                ", num_horas_dual=" + num_horas_dual +
-                ", num_horas_fct=" + num_horas_fct +
+                ", num_horas_dual=" + dual +
+                ", num_horas_fct=" + fct +
                 ", observaciones='" + observaciones + '\'' +
                 '}';
     }
@@ -165,4 +174,5 @@ public class Alumno implements Serializable {
         actividades.remove(a);
         a.setAlumno(null);
     }
+
 }

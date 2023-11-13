@@ -2,7 +2,6 @@ package com.cesur.aplicaciondual.domain.entities.empresa;
 
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import jakarta.persistence.*;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -100,4 +99,5 @@ public class Empresa implements Serializable {
         alumnos.remove(a);
         a.setEmpresa(null);
     }
+
 }

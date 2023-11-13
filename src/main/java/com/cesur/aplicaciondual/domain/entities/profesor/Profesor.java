@@ -83,12 +83,13 @@ public class Profesor implements Serializable {
     }
 
     public void addAlumno(Alumno a){
-        a.setTutor(this);
+        a.setProfesor(this);
         alumnos.add(a);
     }
 
     public void removeAlumno(Alumno a){
         alumnos.remove(a);
-        a.setTutor(null);
+        a.setProfesor(null);
     }
+
 }
