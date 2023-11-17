@@ -5,8 +5,11 @@ module com.cesur.aplicaciondual {
     requires java.sql;
     requires jakarta.persistence;
     requires java.naming;
+    requires ch.qos.logback.classic;
+    requires ch.qos.logback.core;
 
     opens com.cesur.aplicaciondual.domain.entities.alumno;
+    opens com.cesur.aplicaciondual.traza;
     opens com.cesur.aplicaciondual.domain.entities.empresa;
     opens com.cesur.aplicaciondual.domain.entities.profesor;
     opens com.cesur.aplicaciondual.domain.entities.actividad;
