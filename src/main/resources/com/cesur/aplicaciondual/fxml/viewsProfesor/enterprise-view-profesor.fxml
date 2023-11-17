@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="601.0" prefWidth="792.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cesur.aplicaciondual.controllers.EnterpriseViewProfesor">
+   <center>
+      <FlowPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox id="generalview" maxWidth="300.0" minHeight="700.0" minWidth="300.0" prefWidth="500.0" stylesheets="@../../../../../css/style.css">
+               <children>
+                  <FlowPane alignment="TOP_CENTER">
+                     <children>
+                        <ImageView id="imglogo" fitHeight="200.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../img/Accenture-logo.png" />
+                           </image>
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="130.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane alignment="TOP_CENTER">
+                     <children>
+                        <Label id="lbl" text="Accenture S.L" textFill="WHITE">
+                           <font>
+                              <Font name="SFUIText-BoldG3" size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </FlowPane>
+                  <FlowPane hgap="20.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../img/LogoUbicacion.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Ubicacion" textFill="WHITE">
+                           <font>
+                              <Font name="SFUIText-BoldG3" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="36.0" top="30.0" />
+                     </VBox.margin>
+                  </FlowPane>
+               </children>
+            </VBox>
+            <VBox id="contentView" maxHeight="700.0" maxWidth="700.0" prefHeight="700.0" prefWidth="492.0" stylesheets="@../../../../../css/style.css">
+               <children>
+                  <FlowPane alignment="TOP_CENTER">
+                     <VBox.margin>
+                        <Insets top="200.0" />
+                     </VBox.margin>
+                  </FlowPane>
+               </children>
+            </VBox>
+         </children>
+      </FlowPane>
+   </center>
+</BorderPane>
