@@ -1,0 +1,14 @@
+#generalview{
+    -fx-background-color: linear-gradient(to bottom right, #13325Cff, #203E65ff, #2D496Fff, #3A5578ff, #476181ff, #546C8Aff, #627894ff, #6F839Dff, #7C8FA6ff, #899BAFff, #96A6B9ff, #A3B2C2ff);
+}
+
+#imglogo{
+    -fx-effect: dropshadow(gaussian,#000000,40,0.4,0,0 );
+
+}
+
+#contentView{
+
+    //-fx-background-color: linear-gradient(to top left,#13325Cff, #284367ff, #3C5573ff, #51667Eff, #667789ff, #7A8895ff, #8F9AA0ff, #A3ABACff, #B8BCB7ff, #CDCDC2ff, #E1DFCEff, #F6F0D9ff);
+
+}

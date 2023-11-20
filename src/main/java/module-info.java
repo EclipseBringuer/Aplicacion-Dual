@@ -17,4 +17,5 @@ module com.cesur.aplicaciondual {
     exports com.cesur.aplicaciondual;
     exports com.cesur.aplicaciondual.controllers;
     opens com.cesur.aplicaciondual.controllers to javafx.fxml;
+
 }

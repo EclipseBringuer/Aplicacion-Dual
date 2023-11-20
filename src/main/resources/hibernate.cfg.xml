@@ -7,7 +7,7 @@
     <session-factory>
 
         <!-- properties -->
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://aws.connect.psdb.cloud/aplicaciondual?sslMode=VERIFY_IDENTITY</property>
         <property name="hibernate.connection.password">pscale_pw_KcG31maBEUcakFKZNgWPfswNZ0SXVGE8REhE2yy0Cg7</property>
         <property name="hibernate.connection.username">qro2yoy7ecowip85wz3d</property>
