@@ -11,13 +11,15 @@ public class Empresa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany(mappedBy = "empresa")
+    @OneToMany(mappedBy = "empresa",cascade= CascadeType.ALL)
     private List<Alumno> alumnos;
     private String telefono;
     private String email;
     private String responsable;
     private String observaciones;
     private String nombre;
+    private String ubicacion;
+    private String logo;
 
     public Empresa(){}
 
@@ -77,6 +79,22 @@ public class Empresa implements Serializable {
         this.nombre = nombre;
     }
 
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
     @Override
     public String toString() {
         return "Empresa{" +
@@ -93,6 +111,20 @@ public class Empresa implements Serializable {
     public void addAlumno(Alumno a){
         a.setEmpresa(this);
         alumnos.add(a);
+    }
+
+    public static void merge(Empresa vieja,Empresa nueva){
+
+        vieja.setEmail(nueva.getEmail());
+        vieja.setResponsable(nueva.getResponsable());
+        vieja.setLogo(nueva.getLogo());
+        vieja.setObservaciones(nueva.getObservaciones());
+        vieja.setNombre(nueva.getNombre());
+        vieja.setTelefono(nueva.getTelefono());
+        vieja.setAlumnos(nueva.getAlumnos());
+        vieja.setId(nueva.getId());
+        vieja.setUbicacion(nueva.getUbicacion());
+
     }
 
     public void removeAlumno(Alumno a){

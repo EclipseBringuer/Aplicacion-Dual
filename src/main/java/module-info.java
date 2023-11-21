@@ -7,7 +7,9 @@ module com.cesur.aplicaciondual {
     requires java.naming;
     requires ch.qos.logback.classic;
     requires ch.qos.logback.core;
+    requires org.slf4j;
 
+    opens img;
     opens com.cesur.aplicaciondual.domain.entities.alumno;
     opens com.cesur.aplicaciondual.traza;
     opens com.cesur.aplicaciondual.domain.entities.empresa;
