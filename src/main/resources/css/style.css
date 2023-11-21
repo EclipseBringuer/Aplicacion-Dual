@@ -1,17 +1,22 @@
 #aside{
     -fx-background-color: linear-gradient(to bottom right, #13325Cff, #203E65ff, #2D496Fff, #3A5578ff, #476181ff, #546C8Aff, #627894ff, #6F839Dff, #7C8FA6ff, #899BAFff, #96A6B9ff, #A3B2C2ff);
+
 }
 
 #contentView{
 
     -fx-background-color: #F6F4EC;
 
+
 }
 
 
 #imglogo{
-    -fx-effect: dropshadow(gaussian,#000000,40,0.4,0,0 );
+    -fx-effect: dropshadow(gaussian,#000000,40,0.4,0,0);
 
 }
+
+
+
 
 
