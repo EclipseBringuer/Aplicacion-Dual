@@ -25,8 +25,6 @@ public class EnterpriseViewProfesor implements Initializable {
     private boolean nueva;
 
 
-
-
     @javafx.fxml.FXML
     private TextField txtNombre;
     @javafx.fxml.FXML
@@ -57,9 +55,9 @@ public class EnterpriseViewProfesor implements Initializable {
 
         Session.setEmpresa(empresaDAOImp.get(7));
 
-        if(Session.getEmpresa().getId()==null){
+        if (Session.getEmpresa().getId() == null) {
 
-            nueva=true;
+            nueva = true;
 
         }
 
@@ -74,9 +72,9 @@ public class EnterpriseViewProfesor implements Initializable {
 
     private void completarInformacion() {
 
-        if(Session.getEmpresa().getNombre() != null) {
+        if (Session.getEmpresa().getNombre() != null) {
             lblEmpresa.setText(Session.getEmpresa().getNombre());
-        }else lblEmpresa.setText("Nombre de la empresa");
+        } else lblEmpresa.setText("Nombre de la empresa");
 
         lblEmpresa.setText(Session.getEmpresa().getNombre());
         txtNombre.setText(Session.getEmpresa().getNombre());
@@ -87,20 +85,20 @@ public class EnterpriseViewProfesor implements Initializable {
         txtUbicacion.setText(Session.getEmpresa().getUbicacion());
         txtImagen.setText(Session.getEmpresa().getLogo());
 
-        if(Session.getEmpresa().getLogo()!= null) {
+        if (Session.getEmpresa().getLogo() != null) {
 
             img = new Image(Session.getEmpresa().getLogo());
             imgEmpresa.setImage(img);
 
         }
 
-        if(Session.getEmpresa().getUbicacion() != null) {
+        if (Session.getEmpresa().getUbicacion() != null) {
             lblUbicacion.setText(Session.getEmpresa().getUbicacion());
-        }else lblUbicacion.setText("Ubicación");
+        } else lblUbicacion.setText("Ubicación");
 
     }
 
-    private void asignarCampos(){
+    private void asignarCampos() {
 
         Session.getEmpresa().setTelefono(txtTelefono.getText());
         Session.getEmpresa().setNombre(txtNombre.getText());
@@ -117,11 +115,11 @@ public class EnterpriseViewProfesor implements Initializable {
 
         asignarCampos();
 
-        if(!nueva) {
+        if (!nueva) {
 
             empresaDAOImp.update(Session.getEmpresa());
 
-        }else {
+        } else {
 
             empresaDAOImp.save(Session.getEmpresa());
 
