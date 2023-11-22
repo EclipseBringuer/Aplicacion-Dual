@@ -27,7 +27,7 @@ public class App extends Application {
             System.out.println(profesores);
         }*/
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsProfesor/enterprise-view-profesor.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 1300);
+        Scene scene = new Scene(fxmlLoader.load(), 1500, 1200);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

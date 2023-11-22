@@ -18,7 +18,7 @@ public class EmpresaDAOImp implements EmpresaDAO{
     }
 
     @Override
-    public Empresa get(Long id) {
+    public Empresa get(Integer id) {
 
         Empresa u = null;
 
@@ -47,7 +47,28 @@ public class EmpresaDAOImp implements EmpresaDAO{
 
     @Override
     public Empresa save(Empresa data) {
-        return null;
+
+        Empresa empSave = null;
+
+        try (org.hibernate.Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction t = s.beginTransaction();
+
+            s.persist(data);
+
+            empSave=data;
+
+            t.commit();
+
+            LOG.info("Guardado correctamente: "+ data);
+
+        } catch (Exception e) {
+
+            LOG.error(e.getMessage());
+
+        }
+
+        return empSave;
+
     }
 
     @Override

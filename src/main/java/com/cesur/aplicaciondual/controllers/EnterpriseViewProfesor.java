@@ -2,6 +2,7 @@ package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
+import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
 import javafx.event.ActionEvent;
@@ -17,8 +18,11 @@ import java.util.ResourceBundle;
 
 public class EnterpriseViewProfesor implements Initializable {
 
-    Image img;
-    EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();
+    private Image img;
+    private final EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();
+    private final AlumnoDAOImp alumnoDAOImp = new AlumnoDAOImp();
+
+    private boolean nueva;
 
 
 
@@ -44,18 +48,27 @@ public class EnterpriseViewProfesor implements Initializable {
     @javafx.fxml.FXML
     private Label lblUbicacion;
     @javafx.fxml.FXML
-    private ListView listAlumnos;
+    private TextField txtImagen;
+    @javafx.fxml.FXML
+    private TextField txtUbicacion;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Session.setEmpresa(empresaDAOImp.get(7));
+
+        if(Session.getEmpresa().getId()==null){
+
+            nueva=true;
+
+        }
+
 
         img = new Image("/img/NoImg.png");
         imgEmpresa.setImage(img);
 
         completarInformacion();
 
-
-        //TODO rellenar el list view con los alumnos y interacciones
 
     }
 
@@ -71,9 +84,15 @@ public class EnterpriseViewProfesor implements Initializable {
         txtTelefono.setText(Session.getEmpresa().getTelefono());
         txtResponsable.setText(Session.getEmpresa().getResponsable());
         txtObservaciones.setText(Session.getEmpresa().getObservaciones());
+        txtUbicacion.setText(Session.getEmpresa().getUbicacion());
+        txtImagen.setText(Session.getEmpresa().getLogo());
 
-        img = new Image(Session.getEmpresa().getLogo());
-        imgEmpresa.setImage(img);
+        if(Session.getEmpresa().getLogo()!= null) {
+
+            img = new Image(Session.getEmpresa().getLogo());
+            imgEmpresa.setImage(img);
+
+        }
 
         if(Session.getEmpresa().getUbicacion() != null) {
             lblUbicacion.setText(Session.getEmpresa().getUbicacion());
@@ -88,6 +107,8 @@ public class EnterpriseViewProfesor implements Initializable {
         Session.getEmpresa().setObservaciones(txtObservaciones.getText());
         Session.getEmpresa().setResponsable(txtResponsable.getText());
         Session.getEmpresa().setEmail(txtEmail.getText());
+        Session.getEmpresa().setLogo(txtImagen.getText());
+        Session.getEmpresa().setUbicacion(txtUbicacion.getText());
 
     }
 
@@ -96,16 +117,27 @@ public class EnterpriseViewProfesor implements Initializable {
 
         asignarCampos();
 
-        empresaDAOImp.update(Session.getEmpresa());
+        if(!nueva) {
+
+            empresaDAOImp.update(Session.getEmpresa());
+
+        }else {
+
+            empresaDAOImp.save(Session.getEmpresa());
+
+        }
+
 
         Session.setEmpresa(null);
 
         App.loadFXML("fxml/login-view.fxml");
 
+
     }
 
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
+        Session.setEmpresa(null);
         App.loadFXML("fxml/login-view.fxml");
     }
 }

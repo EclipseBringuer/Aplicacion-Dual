@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface AlumnoDAO {
     public ArrayList<Alumno> getAll();
-    public Alumno get(Long id);
+    public Alumno get(Integer id);
     public Alumno save(Alumno data);
     public void update(Alumno data);
     public void delete(Alumno data);
