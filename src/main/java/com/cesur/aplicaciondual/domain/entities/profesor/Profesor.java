@@ -20,7 +20,17 @@ public class Profesor implements Serializable {
     @OneToMany(mappedBy = "profesor")
     private List<Alumno> alumnos;
 
-    public Profesor(){}
+    public Profesor() {
+    }
+
+    public static void merge(Profesor vieja, Profesor nueva) {
+        vieja.setAlumnos(nueva.getAlumnos());
+        vieja.setApellidos(nueva.getApellidos());
+        vieja.setEmail(nueva.getEmail());
+        vieja.setNombre(nueva.getNombre());
+        vieja.setPass(nueva.getPass());
+        vieja.setId(nueva.getId());
+    }
 
     public Integer getId() {
         return id;
@@ -82,12 +92,12 @@ public class Profesor implements Serializable {
                 '}';
     }
 
-    public void addAlumno(Alumno a){
+    public void addAlumno(Alumno a) {
         a.setProfesor(this);
         alumnos.add(a);
     }
 
-    public void removeAlumno(Alumno a){
+    public void removeAlumno(Alumno a) {
         alumnos.remove(a);
         a.setProfesor(null);
     }
