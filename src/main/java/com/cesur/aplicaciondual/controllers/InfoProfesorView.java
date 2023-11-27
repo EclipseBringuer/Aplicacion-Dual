@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class InfoProfesorView implements Initializable {
 
     private Image im;
-    private  ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
+    private  final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
 
     @javafx.fxml.FXML
     private Circle circulo;
@@ -33,7 +33,7 @@ public class InfoProfesorView implements Initializable {
     @javafx.fxml.FXML
     private Button btnCancelar;
     @javafx.fxml.FXML
-    private PasswordField txtContraseña;
+    private PasswordField txtPass;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +49,7 @@ public class InfoProfesorView implements Initializable {
     private void rellenarCampos() {
         txtNombre.setText(Session.getProfesor().getNombre());
         txtApellido.setText(Session.getProfesor().getApellidos());
-        txtContraseña.setText(Session.getProfesor().getPass());
+        txtPass.setText(Session.getProfesor().getPass());
         txtEmail.setText(Session.getProfesor().getEmail());
     }
 
@@ -66,11 +66,12 @@ public class InfoProfesorView implements Initializable {
     }
 
     private void asignarDatos() {
-        Session.getProfesor().setPass(txtContraseña.getText());
+        Session.getProfesor().setPass(txtPass.getText());
         Session.getProfesor().setEmail(txtEmail.getText());
         Session.getProfesor().setNombre(txtNombre.getText());
         Session.getProfesor().setApellidos(txtApellido.getText());
     }
+
 
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
