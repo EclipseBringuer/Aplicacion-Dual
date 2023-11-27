@@ -22,7 +22,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../img/cesur-fp-si-te-gusta-logos-id_n-pVvES.png" />
+                        <Image url="@../../../../../img/logos/cesur-fp-si-te-gusta-logos-id_n-pVvES.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" text="Cesur Formación" textFill="#fffefe">
@@ -42,7 +42,7 @@
                <children>
                   <ImageView id="imglogo" fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../img/Cesur%20Logo%202.png" />
+                        <Image url="@../../../../../img/logos/Cesur%20Logo%202.png" />
                      </image>
                      <FlowPane.margin>
                         <Insets top="50.0" />

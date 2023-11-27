@@ -16,6 +16,24 @@
 
 }
 
+#table{
+    -fx-font-size: 15px;
+}
+
+#table .column-header{
+    -fx-padding: 20;
+    -fx-background-color: linear-gradient(to bottom,#F8F9FAff, #F0F3F5ff, #E9ECF0ff, #E1E6EBff, #D9DFE6ff, #D1D9E1ff, #CAD2DBff, #C2CCD6ff, #BAC5D1ff, #B2BFCCff, #ABB8C7ff, #A3B2C2ff);
+    -fx-font-family: Ebrima;
+
+}
+
+#table .table-row-cell{
+    -fx-padding: 10;
+    -fx-font-family: Ebrima;
+
+
+}
+
 
 
 
