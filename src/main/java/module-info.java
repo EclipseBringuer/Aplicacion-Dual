@@ -10,6 +10,9 @@ module com.cesur.aplicaciondual {
     requires org.slf4j;
 
     opens img;
+    opens img.logos;
+    opens img.profes;
+    opens img.alumnos;
     opens com.cesur.aplicaciondual.domain.entities.alumno;
     opens com.cesur.aplicaciondual.traza;
     opens com.cesur.aplicaciondual.domain.entities.empresa;

@@ -26,7 +26,7 @@ public class App extends Application {
             var profesores = q.getResultList();
             System.out.println(profesores);
         }*/
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsProfesor/info-profesor-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsAlumno/main-view-alumno.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1500, 1200);
         stage.setTitle("Hello!");
         stage.setScene(scene);
