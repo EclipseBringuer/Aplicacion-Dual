@@ -33,6 +33,9 @@
                                  <font>
                                     <Font name="Ebrima Bold" size="24.0" />
                                  </font>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
                               </Label>
                               <Label fx:id="labelHorasFCT" text="25/600 horas FCT Completadas">
                                  <font>

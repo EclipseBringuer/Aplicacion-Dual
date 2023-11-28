@@ -1,5 +1,7 @@
 package com.cesur.aplicaciondual.controllers;
 
+import com.cesur.aplicaciondual.Session;
+import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -13,7 +15,13 @@ import org.w3c.dom.events.Event;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador main-view del Alumno
+ * @author samu_
+ */
 public class MainViewAlumnoController implements Initializable {
+
+    private final AlumnoDAOImp alumnoDAOImp = new AlumnoDAOImp();
 
     @javafx.fxml.FXML
     private TextField txtFiltroNombreTarea;
@@ -54,10 +62,23 @@ public class MainViewAlumnoController implements Initializable {
     @javafx.fxml.FXML
     private Circle circle;
 
+    /**
+     * Inicializador de la main view
+     * @param url **
+     * @param resourceBundle **
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image img = new Image("img/alumnos/Samu.jpg",false);
 
+        Session.setAlumno(alumnoDAOImp.get("12345678A"));
+
+        lblNombreAlumno.setText(Session.getAlumno().getNombre()+" "+Session.getAlumno().getApellidos());
+        labelHorasDual.setText(Session.getAlumno().getDual()+"/600 horas Dual Completadas");
+        labelHorasFCT.setText(Session.getAlumno().getFct()+"/600 horas Fct Completadas");
+        lblNombreTutor.setText(Session.getAlumno().getProfesor().getNombre());
+
+
+        Image img = new Image("img/alumnos/Samu.jpg",false);
         circle.setFill(new ImagePattern(img));
 
 
@@ -66,6 +87,11 @@ public class MainViewAlumnoController implements Initializable {
 
     }
 
+
+    /**
+     * Listener del boton gear
+     * @param actionEvent accion del boton
+     */
     @javafx.fxml.FXML
     public void botonGearActivate(ActionEvent actionEvent) {
         btnGear.setContextMenu(contextMenu);
