@@ -1,8 +1,6 @@
 package com.cesur.aplicaciondual.domain.entities.alumno;
 
 import com.cesur.aplicaciondual.domain.HibernateUtil;
-import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
-import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.slf4j.LoggerFactory;
@@ -18,19 +16,27 @@ public class AlumnoDAOImp implements AlumnoDAO{
         return null;
     }
 
+    /**
+     * Metodo para traer un alumno de la base de datos
+     * @param dni dni del alumno
+     * @return el alumno de la base de datos
+     * @author samu_
+     */
     @Override
-    public Alumno get(Integer id) {
+    public Alumno get(String dni) {
         Alumno u = null;
 
         try (Session s = HibernateUtil.getSessionFactory().openSession()) {
 
-            Query<Alumno> q = s.createQuery("FROM Alumno where id=:n", Alumno.class);
+            Query<Alumno> q = s.createQuery("FROM Alumno where dni=:n", Alumno.class);
 
-            q.setParameter("n", id);
+            q.setParameter("n", dni);
 
             try {
 
                 u = q.getSingleResult();
+
+                LOG.error("Alumno traido correctamente");
 
             } catch (Exception e) {
 
