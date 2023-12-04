@@ -15,7 +15,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class InfoProfesorView implements Initializable {
+public class InfoProfesorViewController implements Initializable {
 
     private Image im;
     private  final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();

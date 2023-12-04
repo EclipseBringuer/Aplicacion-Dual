@@ -36,7 +36,7 @@ public class AlumnoDAOImp implements AlumnoDAO{
 
                 u = q.getSingleResult();
 
-                LOG.error("Alumno traido correctamente");
+                LOG.info("Alumno traido correctamente");
 
             } catch (Exception e) {
 
