@@ -2095,3 +2095,9 @@ w
 G.idea/sonarlint/issuestore/8/6/86d328ac79f634f83ac9ce76b1550f28df623fe1,7\7\77fffc3041dfdd271c70c96ed6a994b89dbfd527
 w
 G.idea/sonarlint/issuestore/2/7/27628ee4661c0c62c6546c368826002b56e0d50c,e\b\eb546123d1011d8b4a5f181460153a699869ed8c
+
+Osrc/main/java/com/cesur/aplicaciondual/domain/entities/actividad/Actividad.java,7\d\7d2c306cc4efd44d41ab3bd929db927f2d73afcc
+‚
+Rsrc/main/java/com/cesur/aplicaciondual/controllers/InfoProfesorViewController.java,b\1\b1d0dde0624c6f1a54321eacdd580b66ecc0f615
+ˆ
+Xsrc/main/java/com/cesur/aplicaciondual/controllers/EnterpriseViewProfesorController.java,7\9\79920db0f8a8b0931f1c5af1344d3f43c7ec2a1c

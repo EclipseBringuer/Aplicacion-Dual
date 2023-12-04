@@ -3,20 +3,17 @@ package com.cesur.aplicaciondual.controllers;
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
-import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
 
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class EnterpriseViewProfesor implements Initializable {
+public class EnterpriseViewProfesorController implements Initializable {
 
     private Image img;
     private final EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();

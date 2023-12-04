@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="919.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cesur.aplicaciondual.controllers.InfoProfesorView">
+<BorderPane prefHeight="919.0" prefWidth="1212.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cesur.aplicaciondual.controllers.InfoProfesorViewController">
    <left>
       <VBox id="aside" maxWidth="300.0" minHeight="1000.0" minWidth="300.0" stylesheets="@../../../../../css/style.css" BorderPane.alignment="TOP_LEFT">
          <children>
