@@ -78,6 +78,7 @@ public class Actividad implements Serializable {
         this.observaciones = observaciones;
     }
 
+
     @Override
     public String toString() {
         return "Actividad{" +
@@ -90,6 +91,8 @@ public class Actividad implements Serializable {
                 ", observaciones='" + observaciones + '\'' +
                 '}';
     }
+
+
 
     public static void merge(Actividad origen, Actividad destino) {
         destino.setAlumno(origen.getAlumno());

@@ -33,6 +33,7 @@ public class App extends Application {
         stage.show();
     }
 
+
     public static void loadFXML(String fxml){
 
         try {
@@ -48,9 +49,6 @@ public class App extends Application {
         }
 
     }
-
-
-
 
 
     public static void main(String[] args) {

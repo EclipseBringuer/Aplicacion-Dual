@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="aplicaciondual@aws.connect.psdb.cloud" uuid="29d2c951-bf50-4a6e-b6f2-1eea6a10a746">
+    <data-source source="LOCAL" name="aplicaciondual@aws.connect.psdb.cloud" uuid="9b1e88e7-deae-4663-a6b2-ca754e0971db">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

@@ -84,7 +84,6 @@ public class MainViewAlumnoController implements Initializable {
 
 
 
-
     }
 
 
