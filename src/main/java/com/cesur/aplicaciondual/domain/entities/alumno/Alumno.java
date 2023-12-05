@@ -19,7 +19,7 @@ public class Alumno implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
-    @OneToMany(mappedBy = "alumno")
+    @OneToMany(mappedBy = "alumno",fetch = FetchType.EAGER)
     private List<Actividad> actividades;
     @Column(name = "nombre")
     private String nombre;

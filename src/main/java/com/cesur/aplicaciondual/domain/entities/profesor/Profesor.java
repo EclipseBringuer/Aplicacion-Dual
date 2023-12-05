@@ -16,8 +16,9 @@ public class Profesor implements Serializable {
     private String apellidos;
     private String email;
     private String pass;
+    private String imagen;
 
-    @OneToMany(mappedBy = "profesor")
+    @OneToMany(mappedBy = "profesor", fetch = FetchType.EAGER)
     private List<Alumno> alumnos;
 
     public Profesor() {
