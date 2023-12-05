@@ -17,6 +17,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainViewProfesorController implements Initializable {
@@ -36,13 +37,13 @@ public class MainViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     private Label lblNombreProfesor;
     @javafx.fxml.FXML
-    private TableColumn <Alumno, String>cNombreAlumno;
+    private TableColumn<Alumno, String> cNombreAlumno;
     @javafx.fxml.FXML
     private TableColumn<Alumno, Integer> cHorasDual;
     @javafx.fxml.FXML
-    private TableColumn <Alumno, Integer>cHorasFtc;
+    private TableColumn<Alumno, Integer> cHorasFtc;
     @javafx.fxml.FXML
-    private TableColumn<Alumno,String> cEmpresa;
+    private TableColumn<Alumno, String> cEmpresa;
     @javafx.fxml.FXML
     private ComboBox comboEmpresa;
     @javafx.fxml.FXML
@@ -52,7 +53,7 @@ public class MainViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     private Button btnFiltrarAlumno;
     @javafx.fxml.FXML
-    private TableView<Alumno>tablaAlumnos;
+    private TableView<Alumno> tablaAlumnos;
 
 
     /**
@@ -70,12 +71,17 @@ public class MainViewProfesorController implements Initializable {
         completarInformacion();
 
         rellenarTabla();
+
     }
 
     /**
      * Completa la información en la interfaz gráfica.
      */
     private void completarInformacion() {
+
+        comboNombreAlumno.setPromptText("Selecciona Alumno");
+        comboEmpresa.setPromptText("Selecciona Empresa");
+
 
         // Obtiene la lista de alumnos del profesor
         List<Alumno> alumnos = Session.getProfesor().getAlumnos();
@@ -88,14 +94,14 @@ public class MainViewProfesorController implements Initializable {
         }
 
 
-
         // Llena el ComboBox de nombres de alumnos
         List<String> nombresAlumnos = new ArrayList<>();
         for (Alumno alumno : alumnos) {
             String nombreCompleto = alumno.getNombre() + " " + alumno.getApellidos();
             nombresAlumnos.add(nombreCompleto);
         }
-        ObservableList<String> nombres = FXCollections.observableArrayList(nombresAlumnos);
+       ObservableList<String> nombres = FXCollections.observableArrayList(nombresAlumnos);
+        nombres.add(0,"Cualquiera");
         comboNombreAlumno.setItems(nombres);
 
 
@@ -111,14 +117,15 @@ public class MainViewProfesorController implements Initializable {
 
         // Llena el ComboBox de nombres de empresas
         ObservableList<String> itemsEmpresas = FXCollections.observableArrayList(nombresEmpresas);
+        itemsEmpresas.add(0,"Cualquiera");
         comboEmpresa.setItems(itemsEmpresas);
-
 
 
     }
 
-    private void rellenarTabla(){
+    private void rellenarTabla() {
         ObservableList<Alumno> listaAlumnos = FXCollections.observableList(Session.getProfesor().getAlumnos());
+
 
         cNombreAlumno.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getNombre()));
         cHorasDual.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getDual()).asObject());
@@ -144,6 +151,52 @@ public class MainViewProfesorController implements Initializable {
     public void filtrarAlumno(ActionEvent actionEvent) {
 
 
+        // Obtén la lista de alumnos original
+        List<Alumno> alumnos = Session.getProfesor().getAlumnos();
+
+        // Obtén el valor seleccionado en el ComboBox comboNombreAlumno
+        String nombreAlumnoSeleccionado = (String) comboNombreAlumno.getValue();
+
+        // Obtén el valor seleccionado en el ComboBox comboEmpresa
+        String empresaSeleccionada = (String) comboEmpresa.getValue();
+
+        // Lista para almacenar los alumnos filtrados
+        List<Alumno> alumnosFiltrados = new ArrayList<>();
+
+
+
+
+
+        // Filtra la lista de alumnos basándote en el valor del ComboBox comboNombreAlumno y comboEmpresa
+        for (Alumno alumno : alumnos) {
+            // Separa nombre y apellidos para hacer la comprobación
+            String nombreCompletoAlumno = alumno.getNombre() + " " + alumno.getApellidos();
+
+            // Verifica si ambos combos están seleccionados y coinciden
+            if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) &&
+                    alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) {
+                alumnosFiltrados.add(alumno);
+            }
+            // Verifica si solo el comboNombreAlumno está seleccionado
+            else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada == null) {
+                alumnosFiltrados.add(alumno);
+            }
+            // Verifica si solo el comboEmpresa está seleccionado
+            else if (empresaSeleccionada != null && alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) {
+                alumnosFiltrados.add(alumno);
+            }
+        }
+
+        // Limpia la tabla y agrega los alumnos filtrados
+        tablaAlumnos.getItems().clear();
+        tablaAlumnos.getItems().addAll(alumnosFiltrados);
+
+
+        // Restaura los valores por defecto de los ComboBox
+        comboNombreAlumno.getSelectionModel().selectFirst();
+        comboEmpresa.getSelectionModel().selectFirst();
 
     }
+
+
 }
