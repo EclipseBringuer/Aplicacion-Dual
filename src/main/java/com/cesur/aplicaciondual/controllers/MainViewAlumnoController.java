@@ -1,7 +1,13 @@
 package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.Session;
+import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -12,7 +18,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import org.w3c.dom.events.Event;
 
+import javax.security.auth.callback.Callback;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -34,17 +44,17 @@ public class MainViewAlumnoController implements Initializable {
     @javafx.fxml.FXML
     private Label lblNombreTutor;
     @javafx.fxml.FXML
-    private TableView tablaActividades;
+    private TableView<Actividad> tablaActividades;
     @javafx.fxml.FXML
-    private TableColumn cNombreActividad;
+    private TableColumn<Actividad,String> cNombreActividad;
     @javafx.fxml.FXML
-    private TableColumn cTipoPractica;
+    private TableColumn<Actividad,String> cTipoPractica;
     @javafx.fxml.FXML
-    private TableColumn cFecha;
+    private TableColumn<Actividad, String> cFecha;
     @javafx.fxml.FXML
-    private TableColumn cHoras;
+    private TableColumn<Actividad,Integer> cHoras;
     @javafx.fxml.FXML
-    private TableColumn cObservaciones;
+    private TableColumn<Actividad,String> cObservaciones;
     @javafx.fxml.FXML
     private TableColumn cAcciones;
     @javafx.fxml.FXML
@@ -61,6 +71,12 @@ public class MainViewAlumnoController implements Initializable {
     private ContextMenu contextMenu;
     @javafx.fxml.FXML
     private Circle circle;
+    @javafx.fxml.FXML
+    private ProgressBar progresBarDual;
+    @javafx.fxml.FXML
+    private ImageView imgRueda;
+    @javafx.fxml.FXML
+    private ProgressBar progresBarFCT;
 
     /**
      * Inicializador de la main view
@@ -70,13 +86,27 @@ public class MainViewAlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Session.setAlumno(alumnoDAOImp.get("12345678A"));
+        Session.setAlumno(alumnoDAOImp.get("23456789Y"));
+
+        ObservableList<Actividad> listaActividades = FXCollections.observableList(Session.getAlumno().getActividades());
 
         lblNombreAlumno.setText(Session.getAlumno().getNombre()+" "+Session.getAlumno().getApellidos());
         labelHorasDual.setText(Session.getAlumno().getDual()+"/600 horas Dual Completadas");
         labelHorasFCT.setText(Session.getAlumno().getFct()+"/600 horas Fct Completadas");
         lblNombreTutor.setText(Session.getAlumno().getProfesor().getNombre());
+        progresBarDual.setProgress((double) Session.getAlumno().getDual() /600);
+        progresBarFCT.setProgress((double) Session.getAlumno().getFct() /600);
 
+
+
+
+        cNombreActividad.setCellValueFactory((fila -> new SimpleStringProperty(fila.getValue().getActividad_realizada())));
+        cTipoPractica.setCellValueFactory((fila -> new SimpleStringProperty(fila.getValue().getTipo_practica())));
+        cFecha.setCellValueFactory((fila -> new SimpleStringProperty((new SimpleDateFormat("dd-MM-yyyy").format(fila.getValue().getFecha())))));
+        cHoras.setCellValueFactory((fila -> new SimpleObjectProperty<>(fila.getValue().getHoras_realizadas())));
+        cObservaciones.setCellValueFactory((fila -> new SimpleStringProperty(fila.getValue().getObservaciones())));
+
+        tablaActividades.getItems().addAll(listaActividades);
 
         Image img = new Image("img/alumnos/Samu.jpg",false);
         circle.setFill(new ImagePattern(img));
