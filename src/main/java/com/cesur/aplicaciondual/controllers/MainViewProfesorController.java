@@ -2,13 +2,10 @@ package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
-import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
-import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import com.cesur.aplicaciondual.domain.entities.profesor.ProfesorDAOImp;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,7 +18,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class MainViewProfesorController implements Initializable {
 
@@ -56,7 +52,7 @@ public class MainViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     private Button btnFiltrarAlumno;
     @javafx.fxml.FXML
-    private TableView tablaAlumnos;
+    private TableView<Alumno>tablaAlumnos;
 
 
     /**
@@ -72,6 +68,8 @@ public class MainViewProfesorController implements Initializable {
 
         // Completa la información en la interfaz gráfica
         completarInformacion();
+
+        rellenarTabla();
     }
 
     /**
@@ -116,35 +114,19 @@ public class MainViewProfesorController implements Initializable {
         comboEmpresa.setItems(itemsEmpresas);
 
 
+
     }
 
     private void rellenarTabla(){
+        ObservableList<Alumno> listaAlumnos = FXCollections.observableList(Session.getProfesor().getAlumnos());
 
-        // Configura la celda de la columna cNombreAlumno
-        cNombreAlumno.setCellValueFactory(cellData -> {
-            Alumno alumno = cellData.getValue();
-            String nombreCompleto = alumno.getNombre() + " " + alumno.getApellidos();
-            return new SimpleStringProperty(nombreCompleto);
-        });
+        cNombreAlumno.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getNombre()));
+        cHorasDual.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getDual()).asObject());
+        cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
+        cEmpresa.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getEmpresa().getNombre()));
 
-        // Configura la celda de la columna cHorasDual
-        cHorasDual.setCellValueFactory(cellData -> {
-            Alumno alumno = cellData.getValue();
-            return new SimpleIntegerProperty(alumno.getDual()).asObject();
-        });
+        tablaAlumnos.getItems().addAll(listaAlumnos);
 
-        // Configura la celda de la columna cHorasFtc
-        cHorasFtc.setCellValueFactory(cellData -> {
-            Alumno alumno = cellData.getValue();
-            return new SimpleIntegerProperty(alumno.getFct()).asObject();
-        });
-
-
-        // Crea la lista observable de alumnos
-        ObservableList<Alumno> observableAlumnos = FXCollections.observableArrayList(Session.getProfesor().getAlumnos());
-
-        // Asigna la lista observable a la tabla
-        tablaAlumnos.setItems(observableAlumnos);
     }
 
 
@@ -156,5 +138,12 @@ public class MainViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     public void botonGearActivate(ActionEvent actionEvent) {
         // Lógica para manejar la activación del botón Gear
+    }
+
+    @javafx.fxml.FXML
+    public void filtrarAlumno(ActionEvent actionEvent) {
+
+
+
     }
 }

@@ -146,7 +146,7 @@
                 </FlowPane>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="btnFiltrarAlumno" mnemonicParsing="false" prefHeight="37.0" prefWidth="78.0" text="Filtrar" />
+                  <Button fx:id="btnFiltrarAlumno" mnemonicParsing="false" onAction="#filtrarAlumno" prefHeight="37.0" prefWidth="78.0" text="Filtrar" />
                </children>
             </VBox>
                 <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
