@@ -6,6 +6,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -37,11 +38,13 @@
                                     <Insets left="10.0" />
                                  </padding>
                               </Label>
+                              <ProgressBar id="progresBar" fx:id="progresBarDual" prefHeight="18.0" prefWidth="358.0" progress="0.46" />
                               <Label fx:id="labelHorasFCT" text="25/600 horas FCT Completadas">
                                  <font>
                                     <Font name="Ebrima Bold" size="24.0" />
                                  </font>
                               </Label>
+                              <ProgressBar id="progresBar" fx:id="progresBarFCT" prefHeight="18.0" prefWidth="359.0" progress="0.26" />
                            </children>
                         </VBox>
                         <FlowPane alignment="CENTER" hgap="20.0" prefHeight="250.0" prefWidth="570.0">
@@ -54,7 +57,7 @@
                               </Label>
                               <Button id="btnGear" fx:id="btnGear" mnemonicParsing="false" onAction="#botonGearActivate" underline="true">
                                  <graphic>
-                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView id="imgRueda" fx:id="imgRueda" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../img/engranaje.png" />
                                        </image>
@@ -81,7 +84,7 @@
                         </ImageView>
                      </children>
                   </FlowPane>
-                  <TableView id="table" fx:id="tablaActividades" stylesheets="@../../../../../css/style.css">
+                  <TableView id="table" fx:id="tablaActividades" prefHeight="859.0" prefWidth="1000.0" stylesheets="@../../../../../css/style.css">
                     <columns>
                       <TableColumn fx:id="cNombreActividad" prefWidth="75.0" text="Actividad" />
                       <TableColumn fx:id="cTipoPractica" prefWidth="75.0" text="Tipo Practica" />

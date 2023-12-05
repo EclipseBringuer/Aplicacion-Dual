@@ -4,6 +4,7 @@ import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "actividad")
@@ -14,7 +15,7 @@ public class Actividad implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_alumno")
     private Alumno alumno;
-    private String fecha;
+    private Date fecha;
     private String tipo_practica;
     private Integer horas_realizadas;
     private String actividad_realizada;
@@ -38,11 +39,11 @@ public class Actividad implements Serializable {
         this.alumno = alumno;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 

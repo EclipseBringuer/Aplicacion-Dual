@@ -5,6 +5,7 @@ import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,7 +29,7 @@ public class Alumno implements Serializable {
     @Column(name = "pass")
     private String pass;
     @Column(name = "fecha_nac")
-    private String fecha_nac;
+    private Date fecha_nac;
     @Column(name = "email")
     private String email;
     @Column(name = "telefono")
@@ -98,11 +99,11 @@ public class Alumno implements Serializable {
         this.pass = pass;
     }
 
-    public String getFecha_nac() {
+    public Date getFecha_nac() {
         return fecha_nac;
     }
 
-    public void setFecha_nac(String fecha_nac) {
+    public void setFecha_nac(Date fecha_nac) {
         this.fecha_nac = fecha_nac;
     }
 

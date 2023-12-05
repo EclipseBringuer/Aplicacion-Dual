@@ -28,14 +28,38 @@
 }
 
 #table .table-row-cell{
-    -fx-padding: 10;
     -fx-font-family: Ebrima;
+    -fx-wrap-text: true;
+    -fx-cell-size: 120px;
 
 
+
+}
+#table .table-row-cell .table-cell {
+    -fx-alignment: CENTER;
+    -fx-font-family: Ebrima;
+    -fx-graphic-text-gap: 0; /* Sin espacio entre el contenido y el borde de la celda */
+    -fx-wrap-text: true;/* Espaciado mínimo (ajustar según tus preferencias) */
+}
+
+#table {
+    -fx-cell-size: 100px;
 }
 #btnGear{
     -fx-background-color: transparent;
 }
+#btnGear:hover{
+    -fx-background-color: #eae9e1;
+}
+
+#progresBar {
+        -fx-accent: #2D496Fff; /* Cambia el color de la barra de progreso */
+}
+
+
+
+
+
 
 
 
