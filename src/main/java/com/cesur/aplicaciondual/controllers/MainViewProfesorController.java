@@ -122,8 +122,8 @@ public class MainViewProfesorController implements Initializable {
         comboEmpresa.setItems(itemsEmpresas);
 
         //Rellena la imagen que coincida con el profesor
-        Image img = new Image(Session.getProfesor().getImagen(),false);
-        circle.setFill(new ImagePattern(img));
+        //Image img = new Image(Session.getProfesor().getImagen(),false);
+        //circle.setFill(new ImagePattern(img));
 
     }
 
@@ -192,6 +192,9 @@ public class MainViewProfesorController implements Initializable {
             else if (empresaSeleccionada != null && alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) {
                 alumnosFiltrados.add(alumno);
             }
+            else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada != null) {
+                mostrarAlertNoResultados();
+            }
         }
 
         // Limpia la tabla y agrega los alumnos filtrados
@@ -203,6 +206,16 @@ public class MainViewProfesorController implements Initializable {
         comboNombreAlumno.getSelectionModel().selectFirst();
         comboEmpresa.getSelectionModel().selectFirst();
 
+    }
+
+
+    // Método para mostrar un Alert indicando que no hay resultados
+    private void mostrarAlertNoResultados() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sin Resultados");
+        alert.setHeaderText(null);
+        alert.setContentText("No hay resultados para el filtro seleccionado.");
+        alert.showAndWait();
     }
 
 
