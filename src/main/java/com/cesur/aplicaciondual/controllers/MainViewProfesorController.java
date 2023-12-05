@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;
@@ -100,10 +102,9 @@ public class MainViewProfesorController implements Initializable {
             String nombreCompleto = alumno.getNombre() + " " + alumno.getApellidos();
             nombresAlumnos.add(nombreCompleto);
         }
-       ObservableList<String> nombres = FXCollections.observableArrayList(nombresAlumnos);
-        nombres.add(0,"Cualquiera");
+        ObservableList<String> nombres = FXCollections.observableArrayList(nombresAlumnos);
+        nombres.add(0, "Cualquiera");
         comboNombreAlumno.setItems(nombres);
-
 
 
         // Recorre la lista de alumnos y obtiene los nombres de las empresas
@@ -117,9 +118,12 @@ public class MainViewProfesorController implements Initializable {
 
         // Llena el ComboBox de nombres de empresas
         ObservableList<String> itemsEmpresas = FXCollections.observableArrayList(nombresEmpresas);
-        itemsEmpresas.add(0,"Cualquiera");
+        itemsEmpresas.add(0, "Cualquiera");
         comboEmpresa.setItems(itemsEmpresas);
 
+        //Rellena la imagen que coincida con el profesor
+        Image img = new Image(Session.getProfesor().getImagen(),false);
+        circle.setFill(new ImagePattern(img));
 
     }
 
@@ -147,6 +151,12 @@ public class MainViewProfesorController implements Initializable {
         // Lógica para manejar la activación del botón Gear
     }
 
+    /**
+     * Maneja el evento de filtrar alumnos
+     *
+     * @param actionEvent
+     *
+     */
     @javafx.fxml.FXML
     public void filtrarAlumno(ActionEvent actionEvent) {
 
@@ -162,9 +172,6 @@ public class MainViewProfesorController implements Initializable {
 
         // Lista para almacenar los alumnos filtrados
         List<Alumno> alumnosFiltrados = new ArrayList<>();
-
-
-
 
 
         // Filtra la lista de alumnos basándote en el valor del ComboBox comboNombreAlumno y comboEmpresa
