@@ -1,17 +1,23 @@
 
 Q
-java:S3740C"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8’ñüıÃ1
+java:S3740E"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8îÖìşÃ1
 ‡
-java:S1450'"eRemove the "listaActividadesFiltro" field and declare it as a local variable in the relevant methods.(ş¹‰úÿÿÿÿ8¨ñüıÃ1
+java:S1450'"eRemove the "listaActividadesFiltro" field and declare it as a local variable in the relevant methods.(ş¹‰úÿÿÿÿ8…×ìşÃ1
 †
-java:S1450("iRemove the "listaActividadesTransicion" field and declare it as a local variable in the relevant methods.(Î‡ø8¨ñüıÃ1
+java:S1450("iRemove the "listaActividadesTransicion" field and declare it as a local variable in the relevant methods.(Î‡ø8…×ìşÃ1
+r
+java:S1450*"URemove the "toggle" field and declare it as a local variable in the relevant methods.(Ò»ñÒ8ûÓöşÃ1
+t
+java:S3776c"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(•‘İŸüÿÿÿÿ8æØúşÃ1
 [
-java:S1128">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8¶ñüıÃ1
+java:S1128">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8–×ìşÃ1
 \
-java:S1128	"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8¶ñüıÃ1
+java:S1128	"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8–×ìşÃ1
 W
-java:S1128"5Remove this unused import 'org.w3c.dom.events.Event'.(í¶°ãşÿÿÿÿ8¶ñüıÃ1
+java:S1128"5Remove this unused import 'org.w3c.dom.events.Event'.(í¶°ãşÿÿÿÿ8–×ìşÃ1
 d
-java:S1128"BRemove this unused import 'javax.security.auth.callback.Callback'.(‚¨á£ûÿÿÿÿ8¶ñüıÃ1
+java:S1128"BRemove this unused import 'javax.security.auth.callback.Callback'.(‚¨á£ûÿÿÿÿ8–×ìşÃ1
 R
-java:S1128"5Remove this unused import 'java.text.ParseException'.(ñ®ï•8¶ñüıÃ1
+java:S1128"5Remove this unused import 'java.text.ParseException'.(ñ®ï•8–×ìşÃ1
+G
+java:S1068*"*Remove this unused "toggle" private field.(Ò»ñÒ8ÔöşÃ1

@@ -39,6 +39,8 @@ public class MainViewAlumnoController implements Initializable {
     private ObservableList<Actividad> listaActividadesFiltro;
     private ObservableList<Actividad> listaActividadesTransicion;
 
+    private RadioButton toggle;
+
     @javafx.fxml.FXML
     private TextField txtFiltroNombreTarea;
     @javafx.fxml.FXML
@@ -125,7 +127,7 @@ public class MainViewAlumnoController implements Initializable {
 
                     if (actividad.getActividad_realizada().contains(txtFiltroNombreTarea.getText())) {
 
-                        listaActividadesFiltro.add(actividad);
+                            listaActividadesFiltro.add(actividad);
 
                     }
 
@@ -144,6 +146,19 @@ public class MainViewAlumnoController implements Initializable {
 
                 listaActividadesTransicion=FXCollections.observableList(new ArrayList<>(listaActividadesFiltro));
 
+            }else {
+
+                tablaActividades.getItems().clear();
+
+                tablaActividades.refresh();
+
+                tablaActividades.getItems().addAll(listaActividades);
+
+                listaActividadesFiltro=FXCollections.observableList(new ArrayList<>(listaActividades));
+
+                listaActividadesTransicion=FXCollections.observableList(new ArrayList<>(listaActividadesFiltro));
+
+
             }
 
         });
@@ -153,6 +168,8 @@ public class MainViewAlumnoController implements Initializable {
 
 
         tipo.selectedToggleProperty().addListener((observable, s, t1) -> {
+
+            toggle=(RadioButton) t1.getToggleGroup().getSelectedToggle();
 
             if (t1 == radioDual) {
 
