@@ -21,6 +21,11 @@
                   <Image url="@../../../../img/logo.png" />
                </image>
             </ImageView>
+            <Label style="-fx-text-fill: #ffc828;" text="Sistema de Gestión DUAL">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children></VBox>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F6F4EC;" HBox.hgrow="ALWAYS">
          <top>
