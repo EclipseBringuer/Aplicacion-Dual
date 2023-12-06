@@ -20,11 +20,14 @@
 
 #btnLogin:hover{
     -fx-translate-y: -3;
-    -fx-background-color:  #F6F4EC;
     -fx-effect: dropshadow(gaussian, #2b2628, 35, 0, 5, 5);
 }
 #btnLogin:pressed{
-    -fx-background-color:  #203E65ff;
+    -fx-background-color:  #F6F4EC;
+    -fx-text-fill: #203E65ff;
+    -fx-border-width: 3px;
+    -fx-border-color: #203E65ff;
+    -fx-border-radius: 25px;
 }
 
 .fields {

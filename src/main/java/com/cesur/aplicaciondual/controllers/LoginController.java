@@ -31,9 +31,6 @@ public class LoginController implements Initializable {
     @FXML
     public void goToCesurWeb(Event event) {
         String url = "https://www.cesurformacion.com/centros";
-        abrirEnlace(url);
-    }
-    private void abrirEnlace(String url) {
         try {
             Desktop.getDesktop().browse(new URI(url));
         } catch (Exception e) {
