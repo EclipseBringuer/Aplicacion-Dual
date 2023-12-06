@@ -67,4 +67,18 @@ public class AlumnoDAOImp implements AlumnoDAO{
     public void delete(Alumno data) {
 
     }
+
+    public Alumno getByAccount(String email, String pass) {
+        Alumno salida = null;
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Alumno> q = s.createQuery("FROM Alumno a WHERE a.email=:em AND a.pass=:ps", Alumno.class);
+            q.setParameter("em", email);
+            q.setParameter("ps", pass);
+            salida = q.getSingleResult();
+            LOG.info("Alumno traido correctamente");
+        } catch (Exception e) {
+            LOG.error(e.getMessage());
+        }
+        return salida;
+    }
 }

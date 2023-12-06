@@ -1,9 +1,13 @@
 package com.cesur.aplicaciondual.domain.entities.alumno;
 
+import com.cesur.aplicaciondual.domain.HibernateUtil;
 import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import jakarta.persistence.*;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +24,7 @@ public class Alumno implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
-    @OneToMany(mappedBy = "alumno",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "alumno", fetch = FetchType.EAGER)
     private List<Actividad> actividades;
     @Column(name = "nombre")
     private String nombre;
@@ -41,7 +45,8 @@ public class Alumno implements Serializable {
     @Column(name = "observaciones")
     private String observaciones;
 
-    public Alumno(){}
+    public Alumno() {
+    }
 
     public String getDni() {
         return dni;
@@ -166,14 +171,13 @@ public class Alumno implements Serializable {
                 '}';
     }
 
-    public void addActividad(Actividad a){
+    public void addActividad(Actividad a) {
         a.setAlumno(this);
         actividades.add(a);
     }
 
-    public void removeActividad(Actividad a){
+    public void removeActividad(Actividad a) {
         actividades.remove(a);
         a.setAlumno(null);
     }
-
 }

@@ -60,7 +60,7 @@
                         <Font size="15.0" />
                      </font>
                   </PasswordField>
-                  <Button id="btnLogin" fx:id="btnLogin" mnemonicParsing="false" text="Iniciar sesión">
+                  <Button id="btnLogin" fx:id="btnLogin" mnemonicParsing="false" onAction="#validateUser" text="Iniciar sesión">
                      <VBox.margin>
                         <Insets top="80.0" />
                      </VBox.margin>
