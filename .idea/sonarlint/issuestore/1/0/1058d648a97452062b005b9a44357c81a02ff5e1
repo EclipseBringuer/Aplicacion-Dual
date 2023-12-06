@@ -1,9 +1,0 @@
-
-r	java:S117j"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆƒµµÿÿÿÿÿ8™ÜË»¿1
-s	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»¸§Åøÿÿÿÿ8™ÜË»¿1
-n	java:S117Š"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î“Ç„8™ÜË»¿1
-u	java:S116 "TRename this field "fecha_nac" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­Öë°şÿÿÿÿ8ƒŠ‡ÛÃ1
-
-java:S1186,"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µØ”8ƒŠ‡ÛÃ1
-j	java:S100f"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ôñ¸8ˆŠ‡ÛÃ1
-o	java:S100j"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆƒµµÿÿÿÿÿ8ˆŠ‡ÛÃ1
