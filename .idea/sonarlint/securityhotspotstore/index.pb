@@ -15,3 +15,7 @@ Rsrc/main/java/com/cesur/aplicaciondual/controllers/MainViewProfesorController.j
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+ˆ
+Xsrc/main/java/com/cesur/aplicaciondual/controllers/EnterpriseViewProfesorController.java,7\9\79920db0f8a8b0931f1c5af1344d3f43c7ec2a1c
+p
+@src/main/java/com/cesur/aplicaciondual/domain/HibernateUtil.java,7\d\7d9fbcbe4799c0f040d9997c28f63bf85b06e419
