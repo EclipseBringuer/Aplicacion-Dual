@@ -23,6 +23,9 @@ import javax.security.auth.callback.Callback;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -37,9 +40,8 @@ public class MainViewAlumnoController implements Initializable {
     private ObservableList<Actividad> listaActividades;
 
     private ObservableList<Actividad> listaActividadesFiltro;
-    private ObservableList<Actividad> listaActividadesTransicion;
 
-    private RadioButton toggle;
+    private ObservableList<Actividad> listaActividadesTransicion;
 
     @javafx.fxml.FXML
     private TextField txtFiltroNombreTarea;
@@ -102,9 +104,9 @@ public class MainViewAlumnoController implements Initializable {
 
         listaActividades = FXCollections.observableList(Session.getAlumno().getActividades());
 
-        listaActividadesFiltro = FXCollections.observableList(Session.getAlumno().getActividades());
+        listaActividadesFiltro = FXCollections.observableArrayList();
 
-        listaActividadesTransicion=FXCollections.observableList(Session.getAlumno().getActividades());
+        listaActividadesTransicion = FXCollections.observableArrayList();
 
 
         //--------Vista general---------
@@ -113,102 +115,103 @@ public class MainViewAlumnoController implements Initializable {
             completarInformacion();
 
             completarTabla();
+
         }
 
 
-        //--------Listener a la propiedad del filtro tareas---------
-        txtFiltroNombreTarea.textProperty().addListener((observable, s, t1) -> {
+        txtFiltroNombreTarea.textProperty().addListener((observable, s, t1) -> filtrar());
 
-            listaActividadesFiltro = FXCollections.observableArrayList();
+        tipo.selectedToggleProperty().addListener((observable, s, t1) -> filtrar());
 
-            if (txtFiltroNombreTarea.getText() != null && !txtFiltroNombreTarea.getText().isEmpty()) {
+        filtroFecha.valueProperty().addListener((observable, s, t1) -> filtrar());
 
-                for (Actividad actividad : listaActividades) {
+    }
 
-                    if (actividad.getActividad_realizada().contains(txtFiltroNombreTarea.getText())) {
 
-                            listaActividadesFiltro.add(actividad);
+    private void filtrar() {
+        listaActividadesFiltro = FXCollections.observableArrayList();
 
-                    }
+        actualizarTabla();
+
+        filtroNombre();
+
+        filtroRadio();
+
+        filtroFecha();
+
+        actualizarTabla();
+
+    }
+
+    private void filtroNombre() {
+
+        if (txtFiltroNombreTarea.getText() != null && !txtFiltroNombreTarea.getText().isEmpty()) {
+
+            for (Actividad actividad : listaActividades) {
+
+                if (actividad.getActividad_realizada().contains(txtFiltroNombreTarea.getText())) {
+
+                    listaActividadesFiltro.add(actividad);
 
                 }
-
-                Set<Actividad> setActividadesFiltro = new HashSet<>(listaActividadesFiltro);
-
-                listaActividadesFiltro = FXCollections.observableList(new ArrayList<>(setActividadesFiltro));
-
-
-                tablaActividades.getItems().clear();
-
-                tablaActividades.refresh();
-
-                tablaActividades.getItems().addAll(listaActividadesFiltro);
-
-                listaActividadesTransicion=FXCollections.observableList(new ArrayList<>(listaActividadesFiltro));
-
-            }else {
-
-                tablaActividades.getItems().clear();
-
-                tablaActividades.refresh();
-
-                tablaActividades.getItems().addAll(listaActividades);
-
-                listaActividadesFiltro=FXCollections.observableList(new ArrayList<>(listaActividades));
-
-                listaActividadesTransicion=FXCollections.observableList(new ArrayList<>(listaActividadesFiltro));
-
-
             }
 
-        });
+            listaActividadesTransicion = FXCollections.observableList(new ArrayList<>(listaActividadesFiltro));
+
+        } else {
+
+            listaActividadesFiltro = FXCollections.observableList(new ArrayList<>(listaActividades));
+
+            listaActividadesTransicion = FXCollections.observableList(new ArrayList<>(listaActividadesFiltro));
+
+        }
+    }
+
+    private void actualizarTabla() {
+
+        tablaActividades.getItems().clear();
+
+        tablaActividades.refresh();
+
+        tablaActividades.getItems().addAll(listaActividadesFiltro);
+
+    }
+
+    private void filtroRadio() {
+
+        if (tipo.getSelectedToggle() == radioDual) {
+
+            listaActividadesFiltro.removeIf(actividad -> actividad.getTipo_practica().equalsIgnoreCase("fct"));
+
+        } else if (tipo.getSelectedToggle() == radioFCT) {
+
+            listaActividadesFiltro.removeIf(actividad -> actividad.getTipo_practica().equalsIgnoreCase("dual"));
+
+        } else {
+
+            listaActividadesFiltro = FXCollections.observableArrayList(new ArrayList<>(listaActividadesTransicion));
+
+        }
+    }
+
+    private void filtroFecha() {
+
+        if (filtroFecha.getValue() != null) {
+            listaActividadesFiltro.removeIf(actividad -> {
+
+                LocalDate seleccionada = filtroFecha.getValue();
+
+                // Convertir Date a LocalDate
+                Instant instant = actividad.getFecha().toInstant();
+                LocalDate fechaActividad = instant.atZone(ZoneId.systemDefault()).toLocalDate();
 
 
-        //------Radios-----
+                // Comparar LocalDate de la actividad con la fecha seleccionada
+                return !fechaActividad.equals(seleccionada);
+            });
+        }
 
 
-        tipo.selectedToggleProperty().addListener((observable, s, t1) -> {
-
-            toggle=(RadioButton) t1.getToggleGroup().getSelectedToggle();
-
-            if (t1 == radioDual) {
-
-                listaActividadesFiltro=FXCollections.observableList(new ArrayList<>(listaActividadesTransicion));
-
-                listaActividadesFiltro.removeIf(actividad -> actividad.getTipo_practica().equalsIgnoreCase("fct"));
-
-                tablaActividades.getItems().clear();
-
-                tablaActividades.refresh();
-
-                tablaActividades.getItems().addAll(listaActividadesFiltro);
-
-            } else if (t1 == radioFCT) {
-
-                listaActividadesFiltro=FXCollections.observableList(new ArrayList<>(listaActividadesTransicion));
-
-                listaActividadesFiltro.removeIf(actividad -> actividad.getTipo_practica().equalsIgnoreCase("dual"));
-
-                tablaActividades.getItems().clear();
-
-                tablaActividades.refresh();
-
-                tablaActividades.getItems().addAll(listaActividadesFiltro);
-
-
-            } else {
-
-                listaActividadesFiltro=FXCollections.observableList(new ArrayList<>(listaActividadesTransicion));
-
-                tablaActividades.getItems().clear();
-
-                tablaActividades.refresh();
-
-                tablaActividades.getItems().addAll(listaActividadesFiltro);
-
-            }
-
-        });
     }
 
     private void completarTabla() {
