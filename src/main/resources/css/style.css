@@ -10,6 +10,40 @@
 
 }
 
+#btnLogin{
+    -fx-background-color:  #203E65ff;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffc828;
+    -fx-font-size: 15px;
+    -fx-background-radius: 25px;
+}
+
+#btnLogin:hover{
+    -fx-translate-y: -3;
+    -fx-background-color:  #F6F4EC;
+    -fx-effect: dropshadow(gaussian, #2b2628, 35, 0, 5, 5);
+}
+#btnLogin:pressed{
+    -fx-background-color:  #203E65ff;
+}
+
+.fields {
+    -fx-background-radius: 22px;
+    -fx-background-color: lightgrey;
+    -fx-font-weight: bold;
+    -fx-font-size: 15;
+}
+
+#enlace{
+    -fx-text-fill: #ffc828;
+    -fx-font-weight: bold;
+}
+
+#enlace:hover{
+    -fx-underline: true;
+    -fx-effect: dropshadow(gaussian, #203E65ff, 10, 0, 0, 0);
+    -fx-font-size: 13px;
+}
 
 #imglogo{
     -fx-effect: dropshadow(gaussian,#000000,40,0.4,0,0);

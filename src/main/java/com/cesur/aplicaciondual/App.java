@@ -26,8 +26,8 @@ public class App extends Application {
             var profesores = q.getResultList();
             System.out.println(profesores);
         }*/
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsAlumno/main-view-alumno.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 1000);
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -40,7 +40,7 @@ public class App extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml));
 
             Scene scene = null;
-            scene = new Scene(fxmlLoader.load(), 1000, 1300);
+            scene = new Scene(fxmlLoader.load());
             myStage.setScene(scene);
 
         } catch (IOException e) {
