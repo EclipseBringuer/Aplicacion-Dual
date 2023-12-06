@@ -1,14 +1,17 @@
 
 Q
-java:S3740;"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8»ùõÚÃ1
-t	java:S116)"SRename this field "RadioFCT" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è‹ùÿÿÿÿ8×ùõÚÃ1
+java:S3740C"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8’ñüıÃ1
+‡
+java:S1450'"eRemove the "listaActividadesFiltro" field and declare it as a local variable in the relevant methods.(ş¹‰úÿÿÿÿ8¨ñüıÃ1
+†
+java:S1450("iRemove the "listaActividadesTransicion" field and declare it as a local variable in the relevant methods.(Î‡ø8¨ñüıÃ1
+[
+java:S1128">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8¶ñüıÃ1
 \
-java:S1128"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8àùõÚÃ1
+java:S1128	"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8¶ñüıÃ1
 W
-java:S1128"5Remove this unused import 'org.w3c.dom.events.Event'.(í¶°ãşÿÿÿÿ8àùõÚÃ1
+java:S1128"5Remove this unused import 'org.w3c.dom.events.Event'.(í¶°ãşÿÿÿÿ8¶ñüıÃ1
 d
-java:S1128"BRemove this unused import 'javax.security.auth.callback.Callback'.(‚¨á£ûÿÿÿÿ8àùõÚÃ1
+java:S1128"BRemove this unused import 'javax.security.auth.callback.Callback'.(‚¨á£ûÿÿÿÿ8¶ñüıÃ1
 R
-java:S1128"5Remove this unused import 'java.text.ParseException'.(ñ®ï•8àùõÚÃ1
-H
-java:S1128"+Remove this unused import 'java.util.Date'.(¸…¼ü8áùõÚÃ1
+java:S1128"5Remove this unused import 'java.text.ParseException'.(ñ®ï•8¶ñüıÃ1
