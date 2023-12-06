@@ -79,4 +79,18 @@ public class ProfesorDAOImp implements ProfesorDAO {
     public void delete(Profesor data) {
 
     }
+
+    public Profesor getByAccount(String email, String pass) {
+        Profesor salida = null;
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Profesor> q = s.createQuery("FROM Profesor p WHERE p.email=:em AND p.pass=:ps", Profesor.class);
+            q.setParameter("em", email);
+            q.setParameter("ps", pass);
+            salida = q.getSingleResult();
+            LOG.info("Profesor obtenido correctamente");
+        }catch (Exception e){
+            LOG.error(e.getMessage());
+        }
+        return salida;
+    }
 }

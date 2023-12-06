@@ -8,6 +8,7 @@ module com.cesur.aplicaciondual {
     requires ch.qos.logback.classic;
     requires ch.qos.logback.core;
     requires org.slf4j;
+    requires java.desktop;
 
     opens img;
     opens img.logos;
