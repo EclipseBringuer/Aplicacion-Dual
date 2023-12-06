@@ -140,9 +140,20 @@
                         <Font name="Ebrima Bold" size="23.0" />
                      </font>
                   </Label>
-                  <RadioButton fx:id="radioDual" mnemonicParsing="false" text="Dual" textFill="WHITE">
+                  <RadioButton fx:id="radioTodas" mnemonicParsing="false" selected="true" text="Todas" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="18.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets left="18.0" top="10.0" />
+                     </VBox.margin>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tipo" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioDual" mnemonicParsing="false" text="Dual" textFill="WHITE" toggleGroup="$tipo">
+                     <VBox.margin>
+                        <Insets left="1.0" />
                      </VBox.margin>
                      <font>
                         <Font name="Ebrima Bold" size="18.0" />
@@ -150,11 +161,8 @@
                      <padding>
                         <Insets left="5.0" />
                      </padding>
-                     <toggleGroup>
-                        <ToggleGroup fx:id="tipo" />
-                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="RadioFCT" mnemonicParsing="false" text="FCT" textFill="WHITE" toggleGroup="$tipo">
+                  <RadioButton fx:id="radioFCT" mnemonicParsing="false" text="FCT" textFill="WHITE" toggleGroup="$tipo">
                      <font>
                         <Font name="Ebrima Bold" size="18.0" />
                      </font>
