@@ -8,5 +8,16 @@
       <jdbc-url>jdbc:mysql://aws.connect.psdb.cloud/aplicaciondual</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="99c40325-574f-4ac2-8da3-bb9d699d2bb7">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/samu_/Desktop/Proyecto dual/Aplicacion-Dual/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://aws.connect.psdb.cloud/aplicaciondual?sslMode=VERIFY_IDENTITY</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

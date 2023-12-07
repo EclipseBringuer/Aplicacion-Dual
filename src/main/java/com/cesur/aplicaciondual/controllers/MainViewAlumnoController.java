@@ -3,6 +3,7 @@ package com.cesur.aplicaciondual.controllers;
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
+import com.cesur.aplicaciondual.domain.entities.actividad.ActividadDAOImp;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,7 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import org.hibernate.Transaction;
 import org.w3c.dom.events.Event;
+import org.w3c.dom.events.MouseEvent;
 
 import javax.security.auth.callback.Callback;
 import java.net.URL;
@@ -37,6 +40,8 @@ import java.util.*;
 public class MainViewAlumnoController implements Initializable {
 
     private final AlumnoDAOImp alumnoDAOImp = new AlumnoDAOImp();
+
+    private final ActividadDAOImp actividadDAOImp = new ActividadDAOImp();
 
     private ObservableList<Actividad> listaActividades;
 
@@ -90,6 +95,12 @@ public class MainViewAlumnoController implements Initializable {
     private ImageView imgRueda;
     @javafx.fxml.FXML
     private ProgressBar progresBarFCT;
+    @javafx.fxml.FXML
+    private MenuItem btnLogOut;
+    @javafx.fxml.FXML
+    private Button btnAñadir;
+    @javafx.fxml.FXML
+    private Button btnEliminar;
 
 
     /**
@@ -209,6 +220,7 @@ public class MainViewAlumnoController implements Initializable {
 
                 // Comparar LocalDate de la actividad con la fecha seleccionada
                 return !fechaActividad.equals(seleccionada);
+
             });
         }
 
@@ -274,6 +286,45 @@ public class MainViewAlumnoController implements Initializable {
 
         });
     }
+    @javafx.fxml.FXML
+    public void logout(ActionEvent actionEvent) {
+
+        Session.setAlumno(null);
+
+        App.loadFXML("login-view.fxml");
+    }
+
+    @javafx.fxml.FXML
+    public void AñadirActividad(ActionEvent actionEvent) {
+
+        Actividad act = new Actividad();
+
+        Session.setActividad(act);
+
+        App.loadFXML("viewsAlumno/add-actividad-view.fxml");
+
+    }
+
+    @javafx.fxml.FXML
+    public void eliminarActividad(ActionEvent actionEvent) {
+
+    Alert alert = App.makeNewAlert(Alert.AlertType.CONFIRMATION,"Eliminar Tarea","¿Estas seguro de que quieres eliminar esta actividad?","Los cambios seran permanentes");
+
+        alert.showAndWait().ifPresent((response) -> {
+
+            if (response == ButtonType.OK && (tablaActividades.getSelectionModel().getSelectedItem() != null)) {
+
+                    actividadDAOImp.delete(tablaActividades.getSelectionModel().getSelectedItem());
+
+                    Session.getAlumno().getActividades().remove(tablaActividades.getSelectionModel().getSelectedItem());
+
+                    tablaActividades.getItems().remove(tablaActividades.getSelectionModel().getSelectedItem());
+                    tablaActividades.refresh();
 
 
+            }
+
+        });
+
+    }
 }

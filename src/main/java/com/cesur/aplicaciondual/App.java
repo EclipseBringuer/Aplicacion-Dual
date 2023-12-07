@@ -36,7 +36,7 @@ public class App extends Application {
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.getIcons().add(imagen);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.show();
     }
 
