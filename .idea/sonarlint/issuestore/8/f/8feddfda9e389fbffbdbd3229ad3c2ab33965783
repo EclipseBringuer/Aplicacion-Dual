@@ -1,13 +1,22 @@
 
 Q
-java:S3740G"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8ÖŒ“Ä1
+java:S3740M"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8“êû­Ä1
+v	java:S116e"URename this field "btnAÃ±adir" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çè‚øÿÿÿÿ8²êû­Ä1
+p	java:S100«"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—–¿šÿÿÿÿÿ8Âêû­Ä1
+Y
+java:S1611º"6Remove the parentheses around the "response" parameter(êé’¡ıÿÿÿÿ8Ãêû­Ä1
 [
-java:S1128">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8Ã“¬Ä1
+java:S1128
+">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8ĞÔ®Ä1
 \
-java:S1128	"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8Ã“¬Ä1
+java:S1128"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8ĞÔ®Ä1
+S
+java:S1128"6Remove this unused import 'org.hibernate.Transaction'.(ìÌè³8ĞÔ®Ä1
 W
-java:S1128"5Remove this unused import 'org.w3c.dom.events.Event'.(í¶°ãşÿÿÿÿ8Ã“¬Ä1
+java:S1128"5Remove this unused import 'org.w3c.dom.events.Event'.(í¶°ãşÿÿÿÿ8ĞÔ®Ä1
+\
+java:S1128":Remove this unused import 'org.w3c.dom.events.MouseEvent'.(öˆÇ±úÿÿÿÿ8ĞÔ®Ä1
 d
-java:S1128"BRemove this unused import 'javax.security.auth.callback.Callback'.(‚¨á£ûÿÿÿÿ8Ã“¬Ä1
+java:S1128"BRemove this unused import 'javax.security.auth.callback.Callback'.(‚¨á£ûÿÿÿÿ8ĞÔ®Ä1
 R
-java:S1128"5Remove this unused import 'java.text.ParseException'.(ñ®ï•8Ã“¬Ä1
+java:S1128"5Remove this unused import 'java.text.ParseException'.(ñ®ï•8ÑÔ®Ä1

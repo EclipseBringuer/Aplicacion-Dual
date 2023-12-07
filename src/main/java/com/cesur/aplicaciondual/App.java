@@ -31,12 +31,12 @@ public class App extends Application {
             var profesores = q.getResultList();
             System.out.println(profesores);
         }*/
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsProfesor/editAndShowAlumno.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsAlumno/main-view-alumno.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.getIcons().add(imagen);
-        stage.setResizable(true);
+        stage.setResizable(false);
         stage.show();
     }
 
