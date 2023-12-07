@@ -14,7 +14,7 @@ public class EditAndShowAlumnoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image foto = new Image("img/alumno.jpg",false);
+        Image foto = new Image("img/usuario.png",false);
         marcoImagen.setFill(new ImagePattern(foto));
     }
 }
