@@ -7,14 +7,27 @@ import org.hibernate.query.Query;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class EmpresaDAOImp implements EmpresaDAO{
+public class EmpresaDAOImp implements EmpresaDAO {
 
     static final org.slf4j.Logger LOG = LoggerFactory.getLogger(EmpresaDAOImp.class);
 
     @Override
-    public ArrayList<Empresa> getAll() {
-        return null;
+    public List<Empresa> getAll() {
+        List<Empresa> salida = new ArrayList<>();
+
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Empresa> q = s.createQuery("FROM Empresa", Empresa.class);
+
+            try {
+                salida = q.getResultList();
+            } catch (Exception e) {
+                LOG.error(e.getMessage());
+            }
+        }
+
+        return salida;
     }
 
     @Override
@@ -55,11 +68,11 @@ public class EmpresaDAOImp implements EmpresaDAO{
 
             s.persist(data);
 
-            empSave=data;
+            empSave = data;
 
             t.commit();
 
-            LOG.info("Guardado correctamente: "+ data);
+            LOG.info("Guardado correctamente: " + data);
 
         } catch (Exception e) {
 

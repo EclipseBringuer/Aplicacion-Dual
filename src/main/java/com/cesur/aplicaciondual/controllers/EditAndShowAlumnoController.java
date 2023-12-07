@@ -2,11 +2,15 @@ package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
+import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -48,10 +52,24 @@ public class EditAndShowAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image foto = new Image("img/usuario.png", false);
         marcoImagen.setFill(new ImagePattern(foto));
+        comboEmpresa.setConverter(new StringConverter<Empresa>() {
+            @Override
+            public String toString(Empresa empresa) {
+                return (empresa != null) ? empresa.getNombre() : "";
+            }
+
+            @Override
+            public Empresa fromString(String s) {
+                return null;
+            }
+        });
+
+        var empresaDAO = new EmpresaDAOImp();
+        ObservableList<Empresa> empresas = FXCollections.observableArrayList(empresaDAO.getAll());
+        comboEmpresa.setItems(empresas);
 
         if (Session.getAlumno() != null) {
             txtNombre.setText(Session.getAlumno().getNombre());
-            //String[] apellidos = Session.getAlumno().getApellidos().split(" ");
             txtApellido1.setText(Session.getAlumno().getApellidos());
             //txtApellido2.setText(apellidos[1]);
             txtDni.setText(Session.getAlumno().getDni());
@@ -62,6 +80,7 @@ public class EditAndShowAlumnoController implements Initializable {
             LocalDate fechaModificada = Session.getAlumno().getFecha_nac().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             datePicker.setValue(fechaModificada);
             txtObservacion.setText(Session.getAlumno().getObservaciones());
+            comboEmpresa.setValue(Session.getAlumno().getEmpresa());
         }
 
     }

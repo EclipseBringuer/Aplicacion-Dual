@@ -1,9 +1,9 @@
 package com.cesur.aplicaciondual.domain.entities.empresa;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface EmpresaDAO {
-    public ArrayList<Empresa> getAll();
+    public List<Empresa> getAll();
     public Empresa get(Integer id);
     public Empresa save(Empresa data);
     public void update(Empresa data);
