@@ -23,6 +23,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
+import org.w3c.dom.events.Event;
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,6 +76,7 @@ public class MainViewProfesorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Establece el profesor en la sesión
+
         Session.getProfesor();
 
         // Completa la información en la interfaz gráfica
@@ -129,6 +131,22 @@ public class MainViewProfesorController implements Initializable {
         itemsEmpresas.add(0, "Cualquiera");
         comboEmpresa.setItems(itemsEmpresas);
 
+
+        ObservableList<String> itemsTipoPractica = comboTipoPractica.getItems();
+
+        // Agrega las opciones "Dual" y "FTC" si no están presentes
+        if (!itemsTipoPractica.contains("Dual")) {
+            itemsTipoPractica.add("Dual");
+        }
+
+        if (!itemsTipoPractica.contains("FTC")) {
+            itemsTipoPractica.add("FTC");
+        }
+
+        // Puedes establecer un valor predeterminado si lo deseas
+        comboTipoPractica.setValue("Dual");
+
+
         //Rellena la imagen que coincida con el profesor
         //Image img = new Image(Session.getProfesor().getImagen(),false);
         //circle.setFill(new ImagePattern(img));
@@ -144,20 +162,20 @@ public class MainViewProfesorController implements Initializable {
         cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
         cEmpresa.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getEmpresa().getNombre()));
 
+
+
         tablaAlumnos.getItems().addAll(listaAlumnos);
 
-       tablaAlumnos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Alumno>() {
-           @Override
-           public void changed(ObservableValue<? extends Alumno> observableValue, Alumno alumno, Alumno a1) {
 
-               if (a1 != null) {
-                   Session.setAlumno(a1);
+       //Al haces doble click cambia de pantalla
+        tablaAlumnos.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && tablaAlumnos.getSelectionModel().getSelectedItem() != null) {
+                Alumno alumnoSeleccionado = tablaAlumnos.getSelectionModel().getSelectedItem();
+                Session.setAlumno(alumnoSeleccionado);
+                App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
+            }
+        });
 
-                   App.loadFXML("viewsAlumno/editAndShowAlumno.fxml");
-               }
-           }
-
-       });
     }
 
 
@@ -254,6 +272,6 @@ public class MainViewProfesorController implements Initializable {
 
     }
 
-    }
 
 
+}
