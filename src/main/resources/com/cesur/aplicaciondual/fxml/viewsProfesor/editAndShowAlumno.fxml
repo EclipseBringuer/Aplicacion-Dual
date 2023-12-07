@@ -57,7 +57,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField>
+                              <TextField fx:id="txtNombre">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -70,7 +70,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="10.0" layoutY="28.0">
+                              <TextField fx:id="txtApellido2" layoutX="10.0" layoutY="28.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -83,7 +83,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="10.0" layoutY="71.0">
+                              <TextField fx:id="txtEmail" layoutX="10.0" layoutY="71.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -96,7 +96,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <DatePicker maxWidth="1.7976931348623157E308">
+                              <DatePicker fx:id="datePicker" maxWidth="1.7976931348623157E308">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -109,7 +109,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="10.0" layoutY="157.0">
+                              <TextField fx:id="txtHorasDual" layoutX="10.0" layoutY="157.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -126,7 +126,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField>
+                              <TextField fx:id="txtApellido1">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -139,7 +139,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="10.0" layoutY="28.0">
+                              <TextField fx:id="txtDni" layoutX="10.0" layoutY="28.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -152,7 +152,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="10.0" layoutY="71.0">
+                              <TextField fx:id="txtPass" layoutX="10.0" layoutY="71.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -165,7 +165,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <ComboBox maxWidth="1.7976931348623157E308" prefWidth="150.0">
+                              <ComboBox fx:id="comboEmpresa" maxWidth="1.7976931348623157E308" prefWidth="150.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -178,7 +178,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <TextField layoutX="10.0" layoutY="157.0">
+                              <TextField fx:id="txtHorasFct" layoutX="10.0" layoutY="157.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -198,15 +198,15 @@
                         <Font name="Ebrima" size="12.0" />
                      </font>
                   </Label>
-                  <TextArea maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" />
+                  <TextArea fx:id="txtObservacion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" wrapText="true" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="btnAceptar" text="Guardar">
+                        <Button fx:id="btnGuardar" mnemonicParsing="false" styleClass="btnAceptar" text="Guardar">
                            <padding>
                               <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                            </padding>
                         </Button>
-                        <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="btnCancelar" text="Cancelar">
+                        <Button fx:id="btnCancelar" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" styleClass="btnCancelar" text="Cancelar">
                            <padding>
                               <Insets bottom="10.0" left="15.0" right="15.0" top="10.0" />
                            </padding>
