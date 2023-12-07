@@ -18,6 +18,37 @@
     -fx-background-radius: 25px;
 }
 
+.btnCancelar{
+    -fx-background-color:  #ffc828;
+    -fx-font-weight: bold;
+    -fx-text-fill: #203E65ff;
+    -fx-font-size: 15px;
+    -fx-background-radius: 25px;
+    -fx-border-width: 3px;
+    -fx-border-color: #ffc828;
+    -fx-border-radius: 25px;
+}
+
+.btnAceptar{
+    -fx-background-color:  #203E65ff;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffc828;
+    -fx-font-size: 15px;
+    -fx-background-radius: 25px;
+    -fx-border-width: 3px;
+    -fx-border-color: #203E65ff;
+    -fx-border-radius: 25px;
+}
+
+.btnAceptar:hover{
+    -fx-translate-y: -3;
+    -fx-effect: dropshadow(gaussian, #2b2628, 35, 0, 5, 5);
+}
+.btnCancelar:hover{
+    -fx-translate-y: -3;
+    -fx-effect: dropshadow(gaussian, #2b2628, 35, 0, 5, 5);
+}
+
 #btnLogin:hover{
     -fx-translate-y: -3;
     -fx-effect: dropshadow(gaussian, #2b2628, 35, 0, 5, 5);
@@ -28,6 +59,15 @@
     -fx-border-width: 3px;
     -fx-border-color: #203E65ff;
     -fx-border-radius: 25px;
+}
+.btnCancelar:pressed{
+    -fx-background-color:  #F6F4EC;
+    -fx-border-color: #203E65ff;
+}
+
+.btnAceptar:pressed{
+    -fx-background-color:  #F6F4EC;
+    -fx-text-fill: #203E65ff;
 }
 
 .fields {

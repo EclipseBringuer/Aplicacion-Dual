@@ -8,20 +8,27 @@ import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
 import com.cesur.aplicaciondual.domain.entities.profesor.ProfesorDAOImp;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
+import org.w3c.dom.events.Event;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainViewProfesorController implements Initializable {
@@ -69,6 +76,7 @@ public class MainViewProfesorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Establece el profesor en la sesión
+
         Session.getProfesor();
 
         // Completa la información en la interfaz gráfica
@@ -123,6 +131,22 @@ public class MainViewProfesorController implements Initializable {
         itemsEmpresas.add(0, "Cualquiera");
         comboEmpresa.setItems(itemsEmpresas);
 
+
+        ObservableList<String> itemsTipoPractica = comboTipoPractica.getItems();
+
+        // Agrega las opciones "Dual" y "FTC" si no están presentes
+        if (!itemsTipoPractica.contains("Dual")) {
+            itemsTipoPractica.add("Dual");
+        }
+
+        if (!itemsTipoPractica.contains("FTC")) {
+            itemsTipoPractica.add("FTC");
+        }
+
+        // Puedes establecer un valor predeterminado si lo deseas
+        comboTipoPractica.setValue("Dual");
+
+
         //Rellena la imagen que coincida con el profesor
         //Image img = new Image(Session.getProfesor().getImagen(),false);
         //circle.setFill(new ImagePattern(img));
@@ -138,9 +162,22 @@ public class MainViewProfesorController implements Initializable {
         cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
         cEmpresa.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getEmpresa().getNombre()));
 
+
+
         tablaAlumnos.getItems().addAll(listaAlumnos);
 
+
+       //Al haces doble click cambia de pantalla
+        tablaAlumnos.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2 && tablaAlumnos.getSelectionModel().getSelectedItem() != null) {
+                Alumno alumnoSeleccionado = tablaAlumnos.getSelectionModel().getSelectedItem();
+                Session.setAlumno(alumnoSeleccionado);
+                App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
+            }
+        });
+
     }
+
 
 
     /**
@@ -152,18 +189,18 @@ public class MainViewProfesorController implements Initializable {
     public void botonGearActivate(ActionEvent actionEvent) {
         // Lógica para manejar la activación del botón Gear
 
-            btnGear.setContextMenu(contextMenu);
+        btnGear.setContextMenu(contextMenu);
 
-            btnGear.setOnMouseClicked(event -> {
+        btnGear.setOnMouseClicked(event -> {
 
-                if (event.getButton() == MouseButton.PRIMARY) {
+            if (event.getButton() == MouseButton.PRIMARY) {
 
-                    contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
+                contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
 
-                }
+            }
 
-            });
-        }
+        });
+    }
 
 
     /**
@@ -207,6 +244,10 @@ public class MainViewProfesorController implements Initializable {
                 alumnosFiltrados.add(alumno);
             } else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada != null) {
 
+                Alert alert = App.makeNewAlert(Alert.AlertType.INFORMATION, "Informacion", "Filtros sin resultado", "Revise la informacion");
+                alert.showAndWait();
+
+
             }
         }
 
@@ -222,9 +263,6 @@ public class MainViewProfesorController implements Initializable {
     }
 
 
-
-
-
     @javafx.fxml.FXML
     public void logOut(ActionEvent actionEvent) {
 
@@ -233,5 +271,7 @@ public class MainViewProfesorController implements Initializable {
         App.loadFXML("login-view.fxml");
 
     }
-}
 
+
+
+}

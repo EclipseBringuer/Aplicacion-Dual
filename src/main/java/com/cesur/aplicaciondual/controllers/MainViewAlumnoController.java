@@ -286,7 +286,6 @@ public class MainViewAlumnoController implements Initializable {
 
         });
     }
-
     @javafx.fxml.FXML
     public void logout(ActionEvent actionEvent) {
 
@@ -327,11 +326,5 @@ public class MainViewAlumnoController implements Initializable {
 
         });
 
-
-
-
-
     }
-
-
 }
