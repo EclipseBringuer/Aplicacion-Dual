@@ -48,11 +48,12 @@ public class EditAndShowAlumnoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image foto = new Image("img/usuario.png", false);
         marcoImagen.setFill(new ImagePattern(foto));
+
         if (Session.getAlumno() != null) {
             txtNombre.setText(Session.getAlumno().getNombre());
-            String[] apellidos = Session.getAlumno().getApellidos().split(" ");
-            txtApellido1.setText(apellidos[0]);
-            txtApellido2.setText(apellidos[1]);
+            //String[] apellidos = Session.getAlumno().getApellidos().split(" ");
+            txtApellido1.setText(Session.getAlumno().getApellidos());
+            //txtApellido2.setText(apellidos[1]);
             txtDni.setText(Session.getAlumno().getDni());
             txtEmail.setText(Session.getAlumno().getEmail());
             txtPass.setText(Session.getAlumno().getPass());
@@ -62,7 +63,6 @@ public class EditAndShowAlumnoController implements Initializable {
             datePicker.setValue(fechaModificada);
             txtObservacion.setText(Session.getAlumno().getObservaciones());
         }
-
 
     }
 }
