@@ -1,5 +1,6 @@
 package com.cesur.aplicaciondual.controllers;
 
+import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
@@ -35,8 +37,6 @@ public class MainViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     private ContextMenu contextMenu;
     @javafx.fxml.FXML
-    private TableColumn cAcciones;
-    @javafx.fxml.FXML
     private Label lblNombreProfesor;
     @javafx.fxml.FXML
     private TableColumn<Alumno, String> cNombreAlumno;
@@ -56,6 +56,8 @@ public class MainViewProfesorController implements Initializable {
     private Button btnFiltrarAlumno;
     @javafx.fxml.FXML
     private TableView<Alumno> tablaAlumnos;
+    @javafx.fxml.FXML
+    private MenuItem btnLogout;
 
 
     /**
@@ -67,7 +69,7 @@ public class MainViewProfesorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Establece el profesor en la sesión
-        Session.setProfesor(profesorDAOImp.get(2));
+        Session.getProfesor();
 
         // Completa la información en la interfaz gráfica
         completarInformacion();
@@ -149,13 +151,25 @@ public class MainViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     public void botonGearActivate(ActionEvent actionEvent) {
         // Lógica para manejar la activación del botón Gear
-    }
+
+            btnGear.setContextMenu(contextMenu);
+
+            btnGear.setOnMouseClicked(event -> {
+
+                if (event.getButton() == MouseButton.PRIMARY) {
+
+                    contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
+
+                }
+
+            });
+        }
+
 
     /**
      * Maneja el evento de filtrar alumnos
      *
      * @param actionEvent
-     *
      */
     @javafx.fxml.FXML
     public void filtrarAlumno(ActionEvent actionEvent) {
@@ -191,9 +205,8 @@ public class MainViewProfesorController implements Initializable {
             // Verifica si solo el comboEmpresa está seleccionado
             else if (empresaSeleccionada != null && alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) {
                 alumnosFiltrados.add(alumno);
-            }
-            else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada != null) {
-                mostrarAlertNoResultados();
+            } else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada != null) {
+
             }
         }
 
@@ -209,14 +222,16 @@ public class MainViewProfesorController implements Initializable {
     }
 
 
-    // Método para mostrar un Alert indicando que no hay resultados
-    private void mostrarAlertNoResultados() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Sin Resultados");
-        alert.setHeaderText(null);
-        alert.setContentText("No hay resultados para el filtro seleccionado.");
-        alert.showAndWait();
+
+
+
+    @javafx.fxml.FXML
+    public void logOut(ActionEvent actionEvent) {
+
+        Session.setProfesor(null);
+
+        App.loadFXML("login-view.fxml");
+
     }
-
-
 }
+
