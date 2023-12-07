@@ -274,13 +274,6 @@ public class MainViewAlumnoController implements Initializable {
 
         });
     }
-    @javafx.fxml.FXML
-    public void logOut(ActionEvent actionEvent) {
 
-        Session.setAlumno(null);
-
-        App.loadFXML("login-view.fxml");
-
-    }
 
 }

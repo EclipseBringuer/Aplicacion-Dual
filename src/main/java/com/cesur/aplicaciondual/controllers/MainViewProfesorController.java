@@ -8,20 +8,26 @@ import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
 import com.cesur.aplicaciondual.domain.entities.profesor.ProfesorDAOImp;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainViewProfesorController implements Initializable {
@@ -140,7 +146,20 @@ public class MainViewProfesorController implements Initializable {
 
         tablaAlumnos.getItems().addAll(listaAlumnos);
 
+       tablaAlumnos.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Alumno>() {
+           @Override
+           public void changed(ObservableValue<? extends Alumno> observableValue, Alumno alumno, Alumno a1) {
+
+               if (a1 != null) {
+                   Session.setAlumno(a1);
+
+                   App.loadFXML("viewsAlumno/editAndShowAlumno.fxml");
+               }
+           }
+
+       });
     }
+
 
 
     /**
@@ -152,18 +171,18 @@ public class MainViewProfesorController implements Initializable {
     public void botonGearActivate(ActionEvent actionEvent) {
         // Lógica para manejar la activación del botón Gear
 
-            btnGear.setContextMenu(contextMenu);
+        btnGear.setContextMenu(contextMenu);
 
-            btnGear.setOnMouseClicked(event -> {
+        btnGear.setOnMouseClicked(event -> {
 
-                if (event.getButton() == MouseButton.PRIMARY) {
+            if (event.getButton() == MouseButton.PRIMARY) {
 
-                    contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
+                contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
 
-                }
+            }
 
-            });
-        }
+        });
+    }
 
 
     /**
@@ -207,6 +226,10 @@ public class MainViewProfesorController implements Initializable {
                 alumnosFiltrados.add(alumno);
             } else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada != null) {
 
+                Alert alert = App.makeNewAlert(Alert.AlertType.INFORMATION, "Informacion", "Filtros sin resultado", "Revise la informacion");
+                alert.showAndWait();
+
+
             }
         }
 
@@ -222,9 +245,6 @@ public class MainViewProfesorController implements Initializable {
     }
 
 
-
-
-
     @javafx.fxml.FXML
     public void logOut(ActionEvent actionEvent) {
 
@@ -233,5 +253,7 @@ public class MainViewProfesorController implements Initializable {
         App.loadFXML("login-view.fxml");
 
     }
-}
+
+    }
+
 
