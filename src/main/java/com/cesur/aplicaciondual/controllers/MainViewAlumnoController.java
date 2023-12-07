@@ -1,5 +1,6 @@
 package com.cesur.aplicaciondual.controllers;
 
+import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
@@ -267,10 +268,19 @@ public class MainViewAlumnoController implements Initializable {
 
                 contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
 
+
+
             }
 
         });
     }
+    @javafx.fxml.FXML
+    public void logOut(ActionEvent actionEvent) {
 
+        Session.setAlumno(null);
+
+        App.loadFXML("login-view.fxml");
+
+    }
 
 }
