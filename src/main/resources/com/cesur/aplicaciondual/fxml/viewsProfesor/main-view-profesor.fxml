@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="1087.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cesur.aplicaciondual.controllers.MainViewProfesorController">
+<BorderPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cesur.aplicaciondual.controllers.MainViewProfesorController">
     <center>
         <VBox id="contentView" alignment="CENTER" stylesheets="@../../../../../css/style.css">
             <children>
@@ -82,7 +82,7 @@
         </VBox>
     </center>
     <left>
-        <VBox id="aside" alignment="TOP_CENTER" maxWidth="300.0" minHeight="1000.0" minWidth="300.0" stylesheets="@../../../../../css/style.css">
+        <VBox id="aside" alignment="TOP_CENTER" maxWidth="300.0" stylesheets="@../../../../../css/style.css">
             <children>
                 <FlowPane alignment="CENTER" prefHeight="263.0" prefWidth="300.0">
                     <children>

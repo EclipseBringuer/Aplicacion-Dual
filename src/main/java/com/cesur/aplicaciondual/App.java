@@ -21,12 +21,7 @@ public class App extends Application {
 
         System.out.println(HibernateUtil.getSessionFactory());
         Image imagen = new Image(getClass().getResourceAsStream("/img/logos/Cesur.png"));
-        /*
-        try(Session s = HibernateUtil.getSessionFactory().openSession()){
-            Query<Profesor> q = s.createQuery("from Profesor",Profesor.class);
-            var profesores = q.getResultList();
-            System.out.println(profesores);
-        }*/
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login");

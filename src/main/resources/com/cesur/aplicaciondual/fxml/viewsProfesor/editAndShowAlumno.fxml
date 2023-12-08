@@ -165,7 +165,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboEmpresa" maxWidth="1.7976931348623157E308" prefWidth="150.0">
+                              <ComboBox id="combo" fx:id="comboEmpresa" maxWidth="1.7976931348623157E308" prefWidth="150.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>

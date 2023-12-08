@@ -79,12 +79,12 @@ public class MainViewProfesorController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Establece el profesor en la sesión
 
-        Session.getProfesor();
+        //Session.getProfesor();
 
         // Completa la información en la interfaz gráfica
-        completarInformacion();
+        //completarInformacion();
 
-        rellenarTabla();
+        //rellenarTabla();
 
     }
 

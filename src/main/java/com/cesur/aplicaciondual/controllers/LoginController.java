@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
 
             if (p != null) {
                 Session.setProfesor(p);
-                App.loadFXML("viewsProfesor/main-view-profesor.fxml");
+                App.loadFXML("viewsProfesor/main-view.fxml");
 
             } else {
                 var alumnDAO = new AlumnoDAOImp();
