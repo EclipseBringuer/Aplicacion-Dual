@@ -11,6 +11,7 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -66,21 +67,19 @@ public class LoginController implements Initializable {
                     App.loadFXML("viewsAlumno/main-view-alumno.fxml");
 
                 } else {
-                    Alert alert = App.makeNewAlert(
+                    App.makeNewAlert(
                             Alert.AlertType.INFORMATION,
                             "Error al iniciar sesión",
                             "Credenciales incorrectas, no se ha encontrado este usuario",
-                            "Pulsa aceptar para volver al formulario");
-                    alert.showAndWait();
+                            "Pulsa aceptar para volver al formulario").showAndWait();
                 }
             }
         } else {
-            Alert alert = App.makeNewAlert(
+            App.makeNewAlert(
                     Alert.AlertType.INFORMATION,
                     "Error al iniciar sesión",
                     "Rellena todos los campos!",
-                    "Pulsa aceptar para volver al formulario");
-            alert.showAndWait();
+                    "Pulsa aceptar para volver al formulario").showAndWait();
         }
     }
 }
