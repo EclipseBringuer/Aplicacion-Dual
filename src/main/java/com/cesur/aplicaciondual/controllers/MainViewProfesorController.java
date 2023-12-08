@@ -2,6 +2,7 @@ package com.cesur.aplicaciondual.controllers;
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
+import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
 import com.cesur.aplicaciondual.domain.entities.profesor.ProfesorDAOImp;
@@ -217,6 +218,8 @@ public class MainViewProfesorController implements Initializable {
      */
     @FXML
     public void filtrarAlumno(ActionEvent actionEvent) {
+        AlumnoDAOImp alumnodao = new AlumnoDAOImp();
+
 
         // Obtén la lista de alumnos original
         List<Alumno> alumnos = Session.getProfesor().getAlumnos();
@@ -238,40 +241,43 @@ public class MainViewProfesorController implements Initializable {
             // Separa nombre y apellidos para hacer la comprobación
             String nombreCompletoAlumno = alumno.getNombre() + " " + alumno.getApellidos();
 
-            // Verifica si ambos combos están seleccionados y coinciden
-            if (("cualquiera".equalsIgnoreCase(nombreAlumnoSeleccionado) || nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado)) &&
-                    ("cualquiera".equalsIgnoreCase(empresaSeleccionada) || alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) &&
-                    ("cualquiera".equalsIgnoreCase(tipoPracticaSeleccionada) || cumpleFiltroTipoPractica(alumno, tipoPracticaSeleccionada))) {
-                alumnosFiltrados.add(alumno);
+
+            // Verifica si el nombre del alumno coincide con el valor seleccionado en el ComboBox comboNombreAlumno
+            if ("Cualquiera".equals(nombreAlumnoSeleccionado) || nombreCompletoAlumno.equals(nombreAlumnoSeleccionado)) {
+                // Verifica si la empresa del alumno coincide con el valor seleccionado en el ComboBox comboEmpresa
+                if ("Cualquiera".equals(empresaSeleccionada) || (alumno.getEmpresa() != null && alumno.getEmpresa().getNombre().equals(empresaSeleccionada))) {
+                    // Verifica si el tipo de práctica del alumno coincide con el valor seleccionado en el ComboBox comboTipoPractica
+                    if ("Dual".equals(tipoPracticaSeleccionada) && alumno.getDual() > 0) {
+                        alumnosFiltrados.add(alumno);
+                    } else if ("FTC".equals(tipoPracticaSeleccionada) && alumno.getFct() > 0) {
+                        alumnosFiltrados.add(alumno);
+                    } else if ("Cualquiera".equals(tipoPracticaSeleccionada)) {
+                        alumnosFiltrados.add(alumno);
+
+                    }
+                }
             }
+
         }
+
 
 
         // Limpia la tabla y agrega los alumnos filtrados
         tablaAlumnos.getItems().clear();
+       // alumnosFiltrados.add(alumnodao.get("12345678B"));
         tablaAlumnos.getItems().addAll(alumnosFiltrados);
 
 
         // Restaura los valores por defecto de los ComboBox
         comboNombreAlumno.getSelectionModel().selectFirst();
         comboEmpresa.getSelectionModel().selectFirst();
+        comboTipoPractica.getSelectionModel().select("Dual"); // Puedes establecer un valor predeterminado
+        System.out.println(alumnosFiltrados);
+
+
 
     }
 
-
-    private boolean cumpleFiltroTipoPractica(Alumno alumno, String tipoPracticaSeleccionada) {
-        // Verifica si el tipo de práctica seleccionado es "DUAL" y las horas dual son mayores que 0
-        if ("DUAL".equalsIgnoreCase(tipoPracticaSeleccionada)) {
-            return alumno.getDual() != null && alumno.getDual() > 0;
-        }
-        // Verifica si el tipo de práctica seleccionado es "FTC" y las horas FTC son mayores que 0
-        else if ("FTC".equalsIgnoreCase(tipoPracticaSeleccionada)) {
-            return alumno.getFct() != null && alumno.getFct() > 0;
-        }
-        // Otros casos (por si acaso)
-        return false;
-
-    }
 
         @javafx.fxml.FXML
         public void logOut (ActionEvent actionEvent){
