@@ -1,13 +1,9 @@
 package com.cesur.aplicaciondual.domain.entities.alumno;
 
-import com.cesur.aplicaciondual.domain.HibernateUtil;
 import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import jakarta.persistence.*;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -179,5 +175,21 @@ public class Alumno implements Serializable {
     public void removeActividad(Actividad a) {
         actividades.remove(a);
         a.setAlumno(null);
+    }
+
+    public static void merge(Alumno origen, Alumno destino) {
+        destino.setProfesor(origen.getProfesor());
+        destino.setEmpresa(origen.getEmpresa());
+        destino.setNombre(origen.getNombre());
+        destino.setObservaciones(origen.getObservaciones());
+        destino.setDni(origen.getDni());
+        destino.setApellidos(origen.getApellidos());
+        destino.setDual(origen.getDual());
+        destino.setActividades(origen.getActividades());
+        destino.setFct(origen.getFct());
+        destino.setEmail(origen.getEmail());
+        destino.setFecha_nac(origen.getFecha_nac());
+        destino.setPass(origen.getPass());
+        destino.setTelefono(origen.getTelefono());
     }
 }

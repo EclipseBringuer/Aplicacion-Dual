@@ -1,7 +1,6 @@
 package com.cesur.aplicaciondual;
 
 import com.cesur.aplicaciondual.domain.HibernateUtil;
-import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,9 +8,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
 import java.io.IOException;
 
 public class App extends Application {
@@ -31,7 +27,7 @@ public class App extends Application {
             var profesores = q.getResultList();
             System.out.println(profesores);
         }*/
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/viewsProfesor/editAndShowAlumno.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login");
         stage.setScene(scene);
