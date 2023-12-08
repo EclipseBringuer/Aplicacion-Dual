@@ -185,7 +185,6 @@ public class Alumno implements Serializable {
         destino.setDni(origen.getDni());
         destino.setApellidos(origen.getApellidos());
         destino.setDual(origen.getDual());
-        destino.setActividades(origen.getActividades());
         destino.setFct(origen.getFct());
         destino.setEmail(origen.getEmail());
         destino.setFecha_nac(origen.getFecha_nac());

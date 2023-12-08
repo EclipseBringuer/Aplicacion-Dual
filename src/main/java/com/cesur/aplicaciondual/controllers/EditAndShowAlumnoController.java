@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ResourceBundle;
@@ -72,6 +73,9 @@ public class EditAndShowAlumnoController implements Initializable {
 
         var empresaDAO = new EmpresaDAOImp();
         ObservableList<Empresa> empresas = FXCollections.observableArrayList(empresaDAO.getAll());
+        Empresa e = new Empresa();
+        e.setNombre("Ninguna");
+        empresas.add(e);
         comboEmpresa.setItems(empresas);
 
         txtDni.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -95,6 +99,8 @@ public class EditAndShowAlumnoController implements Initializable {
         } else {
             comboEmpresa.setPromptText("Selecciona una empresa");
             datePicker.setValue(LocalDate.now());
+            txtHorasDual.setText("0");
+            txtHorasFct.setText("0");
         }
 
     }
@@ -112,14 +118,31 @@ public class EditAndShowAlumnoController implements Initializable {
             a.setObservaciones(txtObservacion.getText());
             a.setPass(txtPass.getText());
             a.setTelefono(txtTelefono.getText());
+            a.setDual(Integer.parseInt(txtHorasDual.getText()));
+            a.setProfesor(Session.getProfesor());
+            a.setFct(Integer.parseInt(txtHorasFct.getText()));
+            a.setApellidos(txtApellidos.getText());
+            a.setFecha_nac(Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            a.setEmail(txtEmail.getText());
+            a.setEmpresa(comboEmpresa.getSelectionModel().getSelectedItem());
+            a.setNombre(txtNombre.getText());
+            a.setDni(txtDni.getText());
 
             var alumnoDAO = new AlumnoDAOImp();
 
             if (Session.getAlumno() != null) {
-
+                Alumno.merge(a, Session.getAlumno());
+                alumnoDAO.update(Session.getAlumno());
             } else {
-                //alumnoDAO.save();
+                alumnoDAO.save(a);
             }
+
+            App.makeNewAlert(Alert.AlertType.INFORMATION,
+                    "Guardado",
+                    "Alumno " + a.getNombre() + " guardado con éxito",
+                    "Pulsa aceptar para salir").showAndWait();
+
+            returnToMain(actionEvent);
         }
     }
 
@@ -144,6 +167,37 @@ public class EditAndShowAlumnoController implements Initializable {
             txtDni.setPromptText("Introduce un DNI válido");
         }
 
+        if (!txtEmail.getText().contains("@")) {
+            isOk = false;
+            txtEmail.setText("");
+            txtEmail.setStyle("-fx-prompt-text-fill: red");
+            txtEmail.setPromptText("Introduce un correo válido");
+        }
+        isOk = validarYGuardarHoras(txtHorasDual, isOk);
+        isOk = validarYGuardarHoras(txtHorasFct, isOk);
+
+        return isOk;
+    }
+
+    private boolean validarYGuardarHoras(TextField textField, boolean isOk) {
+        String newValue = textField.getText();
+        try {
+            int horas = Integer.parseInt(newValue);
+
+            // Verificar si está en el rango permitido
+            if (horas < 0 || horas > 600) {
+                textField.setText(""); // Limpiar el campo en caso de un valor incorrecto
+                textField.setStyle("-fx-prompt-text-fill: red");
+                textField.setPromptText("Introduce una cantidad de horas entre 0 y 600");
+                isOk = false;
+            }
+
+        } catch (NumberFormatException e) {
+            textField.setText(""); // Limpiar el campo en caso de un valor incorrecto
+            textField.setStyle("-fx-prompt-text-fill: red");
+            textField.setPromptText("Introduce un numero válido");
+            isOk = false;
+        }
         return isOk;
     }
 }

@@ -1,10 +1,12 @@
 package com.cesur.aplicaciondual.domain.entities.alumno;
 
 import com.cesur.aplicaciondual.domain.HibernateUtil;
+import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
+import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 
 public class AlumnoDAOImp implements AlumnoDAO{
@@ -55,12 +57,38 @@ public class AlumnoDAOImp implements AlumnoDAO{
 
     @Override
     public Alumno save(Alumno data) {
-        return null;
+        Alumno salida = null;
+
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction t = s.beginTransaction();
+
+            s.persist(data);
+
+            salida = data;
+
+            t.commit();
+
+            LOG.info("Guardado correctamente: " + data);
+
+        } catch (Exception e) {
+            LOG.error(e.getMessage());
+        }
+        return salida;
     }
 
     @Override
     public void update(Alumno data) {
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
 
+            Transaction t = s.beginTransaction();
+
+            Alumno vieja = s.get(Alumno.class, data.getDni());
+
+            Alumno.merge(vieja, data);
+
+            t.commit();
+
+        }
     }
 
     @Override
