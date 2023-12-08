@@ -1,5 +1,4 @@
 package com.cesur.aplicaciondual.controllers;
-
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
@@ -25,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
 import org.w3c.dom.events.Event;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,6 +65,8 @@ public class MainViewProfesorController implements Initializable {
     private TableView<Alumno> tablaAlumnos;
     @javafx.fxml.FXML
     private MenuItem btnLogout;
+    @FXML
+    private TableColumn<Alumno, String> cApellidos;
 
 
     /**
@@ -158,6 +160,7 @@ public class MainViewProfesorController implements Initializable {
 
 
         cNombreAlumno.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getNombre()));
+        cApellidos.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getApellidos()));
         cHorasDual.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getDual()).asObject());
         cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
         cEmpresa.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getEmpresa().getNombre()));
@@ -167,17 +170,20 @@ public class MainViewProfesorController implements Initializable {
         tablaAlumnos.getItems().addAll(listaAlumnos);
 
 
-       //Al haces doble click cambia de pantalla
+        //Al haces doble click cambia de pantalla
         tablaAlumnos.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && tablaAlumnos.getSelectionModel().getSelectedItem() != null) {
                 Alumno alumnoSeleccionado = tablaAlumnos.getSelectionModel().getSelectedItem();
                 Session.setAlumno(alumnoSeleccionado);
                 App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
+
+                // Refrescar la tabla después de volver de la pantalla de editar o mostrar alumno
+                tablaAlumnos.getItems().clear();
+                tablaAlumnos.getItems().addAll(FXCollections.observableList(Session.getProfesor().getAlumnos()));
             }
         });
 
     }
-
 
 
     /**
@@ -208,9 +214,8 @@ public class MainViewProfesorController implements Initializable {
      *
      * @param actionEvent
      */
-    @javafx.fxml.FXML
+    @FXML
     public void filtrarAlumno(ActionEvent actionEvent) {
-
 
         // Obtén la lista de alumnos original
         List<Alumno> alumnos = Session.getProfesor().getAlumnos();
@@ -221,35 +226,25 @@ public class MainViewProfesorController implements Initializable {
         // Obtén el valor seleccionado en el ComboBox comboEmpresa
         String empresaSeleccionada = (String) comboEmpresa.getValue();
 
+        // Obtén el valor seleccionado en el ComboBox comboTipoPractica
+        String tipoPracticaSeleccionada = (String) comboTipoPractica.getValue();
+
         // Lista para almacenar los alumnos filtrados
         List<Alumno> alumnosFiltrados = new ArrayList<>();
 
-
-        // Filtra la lista de alumnos basándote en el valor del ComboBox comboNombreAlumno y comboEmpresa
+        // Filtra la lista de alumnos basándote en el valor del ComboBox comboNombreAlumno, comboEmpresa y comboTipoPractica
         for (Alumno alumno : alumnos) {
             // Separa nombre y apellidos para hacer la comprobación
             String nombreCompletoAlumno = alumno.getNombre() + " " + alumno.getApellidos();
 
             // Verifica si ambos combos están seleccionados y coinciden
-            if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) &&
-                    alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) {
+            if (("cualquiera".equalsIgnoreCase(nombreAlumnoSeleccionado) || nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado)) &&
+                    ("cualquiera".equalsIgnoreCase(empresaSeleccionada) || alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) &&
+                    ("cualquiera".equalsIgnoreCase(tipoPracticaSeleccionada) || cumpleFiltroTipoPractica(alumno, tipoPracticaSeleccionada))) {
                 alumnosFiltrados.add(alumno);
-            }
-            // Verifica si solo el comboNombreAlumno está seleccionado
-            else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada == null) {
-                alumnosFiltrados.add(alumno);
-            }
-            // Verifica si solo el comboEmpresa está seleccionado
-            else if (empresaSeleccionada != null && alumno.getEmpresa().getNombre().equalsIgnoreCase(empresaSeleccionada)) {
-                alumnosFiltrados.add(alumno);
-            } else if (nombreCompletoAlumno.equalsIgnoreCase(nombreAlumnoSeleccionado) && empresaSeleccionada != null) {
-
-                Alert alert = App.makeNewAlert(Alert.AlertType.INFORMATION, "Informacion", "Filtros sin resultado", "Revise la informacion");
-                alert.showAndWait();
-
-
             }
         }
+
 
         // Limpia la tabla y agrega los alumnos filtrados
         tablaAlumnos.getItems().clear();
@@ -263,15 +258,32 @@ public class MainViewProfesorController implements Initializable {
     }
 
 
-    @javafx.fxml.FXML
-    public void logOut(ActionEvent actionEvent) {
-
-        Session.setProfesor(null);
-
-        App.loadFXML("login-view.fxml");
+    private boolean cumpleFiltroTipoPractica(Alumno alumno, String tipoPracticaSeleccionada) {
+        // Verifica si el tipo de práctica seleccionado es "DUAL" y las horas dual son mayores que 0
+        if ("DUAL".equalsIgnoreCase(tipoPracticaSeleccionada)) {
+            return alumno.getDual() != null && alumno.getDual() > 0;
+        }
+        // Verifica si el tipo de práctica seleccionado es "FTC" y las horas FTC son mayores que 0
+        else if ("FTC".equalsIgnoreCase(tipoPracticaSeleccionada)) {
+            return alumno.getFct() != null && alumno.getFct() > 0;
+        }
+        // Otros casos (por si acaso)
+        return false;
 
     }
 
+        @javafx.fxml.FXML
+        public void logOut (ActionEvent actionEvent){
+
+            Session.setProfesor(null);
+
+            App.loadFXML("login-view.fxml");
+
+        }
 
 
+    public void añadirAlumno(MouseEvent mouseEvent) {
+
+        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
+    }
 }
