@@ -30,7 +30,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        txtUser.setText("Guillen@gmail.com");
+        txtPass.setText("franciscogod");
     }
 
     @FXML

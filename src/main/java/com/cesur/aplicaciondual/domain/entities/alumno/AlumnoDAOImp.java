@@ -84,7 +84,7 @@ public class AlumnoDAOImp implements AlumnoDAO{
 
             Alumno vieja = s.get(Alumno.class, data.getDni());
 
-            Alumno.merge(vieja, data);
+            Alumno.merge(data, vieja);
 
             t.commit();
 

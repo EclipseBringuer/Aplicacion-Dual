@@ -163,7 +163,13 @@ public class MainViewProfesorController implements Initializable {
         cApellidos.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getApellidos()));
         cHorasDual.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getDual()).asObject());
         cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
-        cEmpresa.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getEmpresa().getNombre()));
+        cEmpresa.setCellValueFactory(fila -> {
+            String empresaName = "Ninguna";
+            if(fila.getValue().getEmpresa()!=null){
+                empresaName=fila.getValue().getEmpresa().getNombre();
+            }
+            return new SimpleStringProperty(empresaName);
+        });
 
 
 
