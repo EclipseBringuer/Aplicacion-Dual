@@ -163,14 +163,8 @@ public class MainViewProfesorController implements Initializable {
         cApellidos.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getApellidos()));
         cHorasDual.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getDual()).asObject());
         cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
-        cEmpresa.setCellValueFactory(fila -> {
-            String empresaName = "Ninguna";
-            if(fila.getValue().getEmpresa()!=null){
-                empresaName=fila.getValue().getEmpresa().getNombre();
-            }
-            return new SimpleStringProperty(empresaName);
-        });
 
+        cEmpresa.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getEmpresa().getNombre()));
 
 
         tablaAlumnos.getItems().addAll(listaAlumnos);
@@ -182,10 +176,6 @@ public class MainViewProfesorController implements Initializable {
                 Alumno alumnoSeleccionado = tablaAlumnos.getSelectionModel().getSelectedItem();
                 Session.setAlumno(alumnoSeleccionado);
                 App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
-
-                // Refrescar la tabla después de volver de la pantalla de editar o mostrar alumno
-                tablaAlumnos.getItems().clear();
-                tablaAlumnos.getItems().addAll(FXCollections.observableList(Session.getProfesor().getAlumnos()));
             }
         });
 
@@ -263,6 +253,7 @@ public class MainViewProfesorController implements Initializable {
 
     }
 
+    //blaaaa
 
     private boolean cumpleFiltroTipoPractica(Alumno alumno, String tipoPracticaSeleccionada) {
         // Verifica si el tipo de práctica seleccionado es "DUAL" y las horas dual son mayores que 0
