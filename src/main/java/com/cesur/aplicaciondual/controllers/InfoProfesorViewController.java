@@ -69,6 +69,7 @@ public class InfoProfesorViewController implements Initializable {
         Session.getProfesor().setEmail(txtEmail.getText());
         Session.getProfesor().setNombre(txtNombre.getText());
         Session.getProfesor().setApellidos(txtApellido.getText());
+
     }
 
 
