@@ -4,8 +4,11 @@ import com.cesur.aplicaciondual.domain.HibernateUtil;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.profesor.Profesor;
+
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
@@ -13,9 +16,34 @@ import java.util.ArrayList;
 public class ActividadDAOImp implements ActividadDAO{
 
     static final org.slf4j.Logger LOG = LoggerFactory.getLogger(ActividadDAOImp.class);
+
+    /**
+     * Metodo para traerte todas las tareas de un Alumno
+     * @param alumno Alumno del que queremos las tareas
+     * @return lista con las tareas del alumno
+     * @author samu_
+     */
     @Override
-    public ArrayList<Actividad> getAll() {
-        return null;
+    public ArrayList<Actividad> getAll(Alumno alumno) {
+
+        ArrayList<Actividad> lista;
+
+        try (org.hibernate.Session s = HibernateUtil.getSessionFactory().openSession()) {
+
+            Transaction t = s.beginTransaction();
+
+            Query<Actividad> q= s.createQuery("from Actividad where alumno=:alum", Actividad.class);
+
+            q.setParameter("alum",alumno);
+
+            lista = (ArrayList<Actividad>) q.getResultList();
+
+            t.commit();
+
+        }
+
+
+        return lista;
     }
 
     @Override

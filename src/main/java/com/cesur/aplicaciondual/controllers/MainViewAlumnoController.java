@@ -110,7 +110,7 @@ public class MainViewAlumnoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Session.setAlumno(alumnoDAOImp.get("23456789Y"));
+        Session.getAlumno().setActividades(actividadDAOImp.getAll(Session.getAlumno()));
 
         listaActividades = FXCollections.observableList(Session.getAlumno().getActividades());
 

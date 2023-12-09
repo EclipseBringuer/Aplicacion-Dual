@@ -37,7 +37,6 @@ public class InfoProfesorViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Session.setProfesor(profesorDAOImp.get(1));
 
          im = new Image("img/profes/JoseAntonio.jpeg",false);
         circulo.setFill(new ImagePattern(im));
@@ -76,7 +75,7 @@ public class InfoProfesorViewController implements Initializable {
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
 
-        App.loadFXML("fxml/login-view.fxml");
+        App.loadFXML("fxml/viewsProfesor/main-view-profesor.fxml");
 
 
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ProfesorDAOImp implements ProfesorDAO {
 
-    static final org.slf4j.Logger LOG = LoggerFactory.getLogger(EmpresaDAOImp.class);
+    static final org.slf4j.Logger LOG = LoggerFactory.getLogger(ProfesorDAOImp.class);
 
     @Override
     public ArrayList<Profesor> getAll() {
