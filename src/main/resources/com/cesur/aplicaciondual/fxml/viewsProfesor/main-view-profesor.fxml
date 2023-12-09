@@ -54,6 +54,15 @@
                         </FlowPane>
                         <FlowPane alignment="TOP_RIGHT">
                             <children>
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarAlumno" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../img/trash.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                                 <ImageView fitHeight="32.0" fitWidth="32.0" onMouseClicked="#añadirAlumno" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../../../../img/anadir2.png" />

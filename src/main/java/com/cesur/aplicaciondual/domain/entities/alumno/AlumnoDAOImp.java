@@ -94,6 +94,16 @@ public class AlumnoDAOImp implements AlumnoDAO{
     @Override
     public void delete(Alumno data) {
 
+        try (org.hibernate.Session s = HibernateUtil.getSessionFactory().openSession()) {
+
+            Transaction t = s.beginTransaction();
+
+            s.remove(data);
+
+            t.commit();
+
+        }
+
     }
 
     public Alumno getByAccount(String email, String pass) {

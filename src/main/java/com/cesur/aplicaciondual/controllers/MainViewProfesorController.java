@@ -1,4 +1,5 @@
 package com.cesur.aplicaciondual.controllers;
+
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
@@ -37,6 +38,8 @@ public class MainViewProfesorController implements Initializable {
     private final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
     private final EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();
 
+    private final AlumnoDAOImp alumnoDAOimp = new AlumnoDAOImp();
+
 
     @javafx.fxml.FXML
     private Circle circle;
@@ -68,6 +71,8 @@ public class MainViewProfesorController implements Initializable {
     private MenuItem btnLogout;
     @FXML
     private TableColumn<Alumno, String> cApellidos;
+    @FXML
+    private Button btnEliminar;
 
 
     /**
@@ -157,6 +162,9 @@ public class MainViewProfesorController implements Initializable {
     }
 
     private void rellenarTabla() {
+
+        tablaAlumnos.getItems().clear();
+
         ObservableList<Alumno> listaAlumnos = FXCollections.observableList(Session.getProfesor().getAlumnos());
 
 
@@ -166,8 +174,8 @@ public class MainViewProfesorController implements Initializable {
         cHorasFtc.setCellValueFactory(fila -> new SimpleIntegerProperty(fila.getValue().getFct()).asObject());
         cEmpresa.setCellValueFactory(fila -> {
             String empresaName = "Ninguna";
-            if(fila.getValue().getEmpresa()!=null){
-                empresaName=fila.getValue().getEmpresa().getNombre();
+            if (fila.getValue().getEmpresa() != null) {
+                empresaName = fila.getValue().getEmpresa().getNombre();
             }
             return new SimpleStringProperty(empresaName);
         });
@@ -184,6 +192,7 @@ public class MainViewProfesorController implements Initializable {
                 App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
             }
         });
+
 
     }
 
@@ -208,6 +217,7 @@ public class MainViewProfesorController implements Initializable {
             }
 
         });
+
     }
 
 
@@ -218,6 +228,7 @@ public class MainViewProfesorController implements Initializable {
      */
     @FXML
     public void filtrarAlumno(ActionEvent actionEvent) {
+
         AlumnoDAOImp alumnodao = new AlumnoDAOImp();
 
 
@@ -237,35 +248,38 @@ public class MainViewProfesorController implements Initializable {
         List<Alumno> alumnosFiltrados = new ArrayList<>();
 
         // Filtra la lista de alumnos basándote en el valor del ComboBox comboNombreAlumno, comboEmpresa y comboTipoPractica
+        // Filtra la lista de alumnos basándote en el valor del ComboBox comboNombreAlumno, comboEmpresa y comboTipoPractica
+
         for (Alumno alumno : alumnos) {
+
             // Separa nombre y apellidos para hacer la comprobación
             String nombreCompletoAlumno = alumno.getNombre() + " " + alumno.getApellidos();
 
+            // Verifica si el nombre del alumno coincide con la selección del ComboBox de nombres
+            boolean nombreCoincide = nombreAlumnoSeleccionado == null || nombreAlumnoSeleccionado.equals("Cualquiera") || nombreCompletoAlumno.equals(nombreAlumnoSeleccionado);
 
-            // Verifica si el nombre del alumno coincide con el valor seleccionado en el ComboBox comboNombreAlumno
-            if ("Cualquiera".equals(nombreAlumnoSeleccionado) || nombreCompletoAlumno.equals(nombreAlumnoSeleccionado)) {
-                // Verifica si la empresa del alumno coincide con el valor seleccionado en el ComboBox comboEmpresa
-                if ("Cualquiera".equals(empresaSeleccionada) || (alumno.getEmpresa() != null && alumno.getEmpresa().getNombre().equals(empresaSeleccionada))) {
-                    // Verifica si el tipo de práctica del alumno coincide con el valor seleccionado en el ComboBox comboTipoPractica
-                    if ("Dual".equals(tipoPracticaSeleccionada) && alumno.getDual() > 0) {
-                        alumnosFiltrados.add(alumno);
-                    } else if ("FTC".equals(tipoPracticaSeleccionada) && alumno.getFct() > 0) {
-                        alumnosFiltrados.add(alumno);
-                    } else if ("Cualquiera".equals(tipoPracticaSeleccionada)) {
-                        alumnosFiltrados.add(alumno);
+            // Verifica si la empresa del alumno coincide con la selección del ComboBox de empresas
+            boolean empresaCoincide = empresaSeleccionada == null || empresaSeleccionada.equals("Cualquiera") || (alumno.getEmpresa() != null && alumno.getEmpresa().getNombre().equals(empresaSeleccionada));
 
-                    }
-                }
+            // Verifica si el tipo de práctica del alumno coincide con la selección del ComboBox de tipo de práctica
+            boolean tipoPracticaCoincide = tipoPracticaSeleccionada == null || tipoPracticaSeleccionada.equals("Dual") ? alumno.getDual() > 0 : alumno.getFct() > 0;
+
+            // Agrega el alumno a la lista filtrada si todas las condiciones se cumplen
+            if (nombreCoincide && empresaCoincide && tipoPracticaCoincide) {
+                alumnosFiltrados.add(alumno);
             }
-
         }
+
+
+
 
 
 
         // Limpia la tabla y agrega los alumnos filtrados
         tablaAlumnos.getItems().clear();
-       // alumnosFiltrados.add(alumnodao.get("12345678B"));
+        // alumnosFiltrados.add(alumnodao.get("12345678B"));
         tablaAlumnos.getItems().addAll(alumnosFiltrados);
+        System.out.println(alumnosFiltrados);
 
 
         // Restaura los valores por defecto de los ComboBox
@@ -274,23 +288,47 @@ public class MainViewProfesorController implements Initializable {
         comboTipoPractica.getSelectionModel().select("Dual"); // Puedes establecer un valor predeterminado
         System.out.println(alumnosFiltrados);
 
-
-
     }
 
 
-        @javafx.fxml.FXML
-        public void logOut (ActionEvent actionEvent){
+    @javafx.fxml.FXML
+    public void logOut(ActionEvent actionEvent) {
 
-            Session.setProfesor(null);
+        Session.setProfesor(null);
 
-            App.loadFXML("login-view.fxml");
+        App.loadFXML("login-view.fxml");
 
-        }
+    }
 
 
     public void añadirAlumno(MouseEvent mouseEvent) {
 
         App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
+    }
+
+
+    @FXML
+    public void eliminarAlumno(ActionEvent actionEvent) {
+
+        Alert alert = App.makeNewAlert(Alert.AlertType.CONFIRMATION, "Eliminar Tarea", "¿Estas seguro de que quieres eliminar este alumno?", "Los cambios seran permanentes");
+
+        alert.showAndWait().ifPresent((response) -> {
+
+            if (response == ButtonType.OK && (tablaAlumnos.getSelectionModel().getSelectedItem() != null)) {
+
+                alumnoDAOimp.delete(tablaAlumnos.getSelectionModel().getSelectedItem());
+
+                Session.getProfesor().getAlumnos().remove(tablaAlumnos.getSelectionModel().getSelectedItem());
+
+                // Session.getAlumno().getActividades().remove();
+
+                tablaAlumnos.getItems().remove(tablaAlumnos.getSelectionModel().getSelectedItem());
+                tablaAlumnos.refresh();
+
+
+            }
+
+        });
+
     }
 }

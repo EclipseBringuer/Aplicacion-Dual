@@ -142,6 +142,8 @@ public class EditAndShowAlumnoController implements Initializable {
                     "Alumno " + a.getNombre() + " guardado con éxito",
                     "Pulsa aceptar para salir").showAndWait();
 
+            Session.getProfesor().getAlumnos().add(a);
+
             returnToMain(actionEvent);
         }
     }
