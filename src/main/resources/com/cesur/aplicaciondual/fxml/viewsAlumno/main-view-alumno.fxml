@@ -104,7 +104,6 @@
                         <TableColumn fx:id="cFecha" prefWidth="75.0" text="Fecha" />
                         <TableColumn fx:id="cHoras" prefWidth="75.0" text="Horas" />
                         <TableColumn fx:id="cObservaciones" prefWidth="75.0" text="Observaciones" />
-                        <TableColumn fx:id="cAcciones" prefWidth="75.0" text="Acciones" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

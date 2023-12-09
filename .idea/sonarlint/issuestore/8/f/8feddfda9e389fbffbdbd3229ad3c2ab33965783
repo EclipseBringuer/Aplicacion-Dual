@@ -1,10 +1,6 @@
 
-Q
-java:S3740M"/Provide the parametrized type for this generic.(Î• ’úÿÿÿÿ8“êû­Ä1
-v	java:S116e"URename this field "btnAÃ±adir" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çè‚øÿÿÿÿ8²êû­Ä1
-p	java:S100«"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—–¿šÿÿÿÿÿ8Âêû­Ä1
-Y
-java:S1611º"6Remove the parentheses around the "response" parameter(êé’¡ıÿÿÿÿ8Ãêû­Ä1
+v	java:S116c"URename this field "btnAÃ±adir" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Çè‚øÿÿÿÿ8¢˜¬öÄ1
+p	java:S100¨"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(—–¿šÿÿÿÿÿ8·˜¬öÄ1
 [
 java:S1128
 ">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8ĞÔ®Ä1
