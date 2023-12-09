@@ -20,7 +20,7 @@ public class Alumno implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
-    @OneToMany(mappedBy = "alumno", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "alumno", fetch = FetchType.LAZY)
     private List<Actividad> actividades;
     @Column(name = "nombre")
     private String nombre;

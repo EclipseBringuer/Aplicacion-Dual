@@ -11,7 +11,7 @@ public class Empresa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToMany(mappedBy = "empresa",fetch = FetchType.EAGER,cascade= CascadeType.ALL)
+    @OneToMany(mappedBy = "empresa",fetch = FetchType.LAZY,cascade= CascadeType.ALL)
 
     private List<Alumno> alumnos;
     private String telefono;

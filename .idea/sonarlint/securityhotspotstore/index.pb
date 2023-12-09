@@ -19,3 +19,17 @@ Osrc/main/java/com/cesur/aplicaciondual/domain/entities/alumno/AlumnoDAOImp.java
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+à
+Xsrc/main/java/com/cesur/aplicaciondual/controllers/EnterpriseViewProfesorController.java,7\9\79920db0f8a8b0931f1c5af1344d3f43c7ec2a1c
+}
+Msrc/main/java/com/cesur/aplicaciondual/domain/entities/profesor/Profesor.java,8\2\821d26eb3f6dcd93b4ecd7295647dc16b58e1856
+y
+Isrc/main/java/com/cesur/aplicaciondual/domain/entities/alumno/Alumno.java,1\0\1058d648a97452062b005b9a44357c81a02ff5e1
+{
+Ksrc/main/java/com/cesur/aplicaciondual/domain/entities/empresa/Empresa.java,e\d\ed2167d52fc0e73dcd3cf4a85c5b3d22e6368faa
+Ç
+Rsrc/main/java/com/cesur/aplicaciondual/domain/entities/actividad/ActividadDAO.java,1\d\1d232e7e9b0f07249b9596efa730f64d252ff350
+Å
+Qsrc/main/java/com/cesur/aplicaciondual/domain/entities/empresa/EmpresaDAOImp.java,f\3\f31f0517e328433b49e43fea307570613b8bf81f
+Ç
+Rsrc/main/java/com/cesur/aplicaciondual/controllers/InfoProfesorViewController.java,b\1\b1d0dde0624c6f1a54321eacdd580b66ecc0f615
