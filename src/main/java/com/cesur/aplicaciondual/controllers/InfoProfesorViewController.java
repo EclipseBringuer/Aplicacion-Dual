@@ -60,8 +60,7 @@ public class InfoProfesorViewController implements Initializable {
 
         profesorDAOImp.update(Session.getProfesor());
 
-        App.loadFXML("fxml/login-view.fxml");
-
+        App.loadFXML("viewsProfesor/main-view-profesor.fxml");
     }
 
     private void asignarDatos() {

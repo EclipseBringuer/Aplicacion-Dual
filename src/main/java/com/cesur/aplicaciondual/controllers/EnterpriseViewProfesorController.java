@@ -50,7 +50,7 @@ public class EnterpriseViewProfesorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Session.setEmpresa(empresaDAOImp.get(7));
+        Session.setEmpresa(Session.getEmpresa());
 
         if (Session.getEmpresa().getId() == null) {
 
@@ -132,7 +132,12 @@ public class EnterpriseViewProfesorController implements Initializable {
 
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
+
         Session.setEmpresa(null);
-        App.loadFXML("fxml/login-view.fxml");
+
+        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml");
+
+
+
     }
 }

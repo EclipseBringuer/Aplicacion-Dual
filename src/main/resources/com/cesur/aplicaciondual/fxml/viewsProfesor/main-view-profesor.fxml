@@ -26,7 +26,7 @@
                             <children>
                                 <FlowPane alignment="CENTER_RIGHT" hgap="20.0" prefHeight="250.0" prefWidth="748.0">
                                     <children>
-                                        <Circle fx:id="circle" fill="DODGERBLUE" radius="76.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Circle fx:id="circle" fill="DODGERBLUE" onMouseClicked="#verPerfilProfesor" radius="76.0" stroke="BLACK" strokeType="INSIDE" />
                                         <Label fx:id="lblNombreProfesor" text="Nombre del profesor">
                                             <font>
                                                 <Font name="Ebrima Bold" size="23.0" />
@@ -52,11 +52,16 @@
                                 </FlowPane>
                             </children>
                         </FlowPane>
-                        <FlowPane alignment="TOP_RIGHT">
+                        <FlowPane alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="840.0">
                             <children>
+                        <FlowPane prefHeight="35.0" prefWidth="916.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#verListaEmpresas" prefHeight="37.0" prefWidth="92.0" text="Ver Empresas" />
+                           </children>
+                        </FlowPane>
                         <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#eliminarAlumno" style="-fx-background-color: transparent;">
                            <graphic>
-                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../img/trash.png" />
                                  </image>

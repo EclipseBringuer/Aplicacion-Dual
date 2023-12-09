@@ -37,7 +37,6 @@ public class MainViewProfesorController implements Initializable {
 
     private final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
     private final EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();
-
     private final AlumnoDAOImp alumnoDAOimp = new AlumnoDAOImp();
 
 
@@ -49,8 +48,6 @@ public class MainViewProfesorController implements Initializable {
     private ContextMenu contextMenu;
     @javafx.fxml.FXML
     private Label lblNombreProfesor;
-    @javafx.fxml.FXML
-    private TableColumn<Alumno, String> cNombreAlumno;
     @javafx.fxml.FXML
     private TableColumn<Alumno, Integer> cHorasDual;
     @javafx.fxml.FXML
@@ -73,6 +70,8 @@ public class MainViewProfesorController implements Initializable {
     private TableColumn<Alumno, String> cApellidos;
     @FXML
     private Button btnEliminar;
+    @FXML
+    private TableColumn<Alumno,String> cNombreAlumno;
 
 
     /**
@@ -330,5 +329,27 @@ public class MainViewProfesorController implements Initializable {
 
         });
 
+    }
+
+
+
+    public void verPerfilProfesor(MouseEvent mouseEvent) {
+
+        App.loadFXML("viewsProfesor/info-profesor-view.fxml");
+
+    }
+
+    public void verListaEmpresas(ActionEvent actionEvent) {
+
+        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml");
+
+
+
+
+
+    }
+
+    @FXML
+    public void verPerfilProfesor(Event event) {
     }
 }
