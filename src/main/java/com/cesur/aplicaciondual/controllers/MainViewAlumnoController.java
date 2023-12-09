@@ -74,8 +74,6 @@ public class MainViewAlumnoController implements Initializable {
     @javafx.fxml.FXML
     private TableColumn<Actividad, String> cObservaciones;
     @javafx.fxml.FXML
-    private TableColumn cAcciones;
-    @javafx.fxml.FXML
     private Label labelHorasDual;
     @javafx.fxml.FXML
     private Label labelHorasFCT;
@@ -281,7 +279,6 @@ public class MainViewAlumnoController implements Initializable {
                 contextMenu.show(btnGear, event.getScreenX(), event.getScreenY());
 
 
-
             }
 
         });
@@ -292,12 +289,15 @@ public class MainViewAlumnoController implements Initializable {
         Session.setAlumno(null);
 
         App.loadFXML("login-view.fxml");
+
     }
 
     @javafx.fxml.FXML
     public void AñadirActividad(ActionEvent actionEvent) {
 
         Actividad act = new Actividad();
+
+        act.setAlumno(Session.getAlumno());
 
         Session.setActividad(act);
 
@@ -310,7 +310,7 @@ public class MainViewAlumnoController implements Initializable {
 
     Alert alert = App.makeNewAlert(Alert.AlertType.CONFIRMATION,"Eliminar Tarea","¿Estas seguro de que quieres eliminar esta actividad?","Los cambios seran permanentes");
 
-        alert.showAndWait().ifPresent((response) -> {
+        alert.showAndWait().ifPresent(response -> {
 
             if (response == ButtonType.OK && (tablaActividades.getSelectionModel().getSelectedItem() != null)) {
 
@@ -320,7 +320,6 @@ public class MainViewAlumnoController implements Initializable {
 
                     tablaActividades.getItems().remove(tablaActividades.getSelectionModel().getSelectedItem());
                     tablaActividades.refresh();
-
 
             }
 

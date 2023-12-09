@@ -1,17 +1,11 @@
 
-g	java:S1127"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8œ¹€Ä1
+g	java:S1123"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8€Ô¥óÄ1
 u
-java:S1104"SMake myStage a static final constant or non-public and provide accessors if needed.(İ÷¤ƒùÿÿÿÿ8¹€Ä1
+java:S1104"SMake myStage a static final constant or non-public and provide accessors if needed.(İ÷¤ƒùÿÿÿÿ8€Ô¥óÄ1
 O
-java:S1444"-Make this "public static myStage" field final(İ÷¤ƒùÿÿÿÿ8¹€Ä1
+java:S1444"-Make this "public static myStage" field final(İ÷¤ƒùÿÿÿÿ8€Ô¥óÄ1
 X
-java:S2696"6Make the enclosing method "static" or remove this set.(¡àµ–şÿÿÿÿ8¶¹€Ä1
-G	java:S106"+Replace this use of System.out by a logger.(°²¥°8¸¹€Ä1
-X	java:S125"<This block of commented-out lines of code should be removed.(ğ½…¸8Ä¹€Ä1
-G	java:S1066"+Replace this use of System.out by a logger.(œ’á8Î¹€Ä1
-t
-java:S1128"WRemove this unused import 'com.cesur.aplicaciondual.domain.entities.profesor.Profesor'.(…È¹ü8÷°’¼¿1
-T
-java:S1128"2Remove this unused import 'org.hibernate.Session'.(È¹›§ùÿÿÿÿ8Ô¹€Ä1
-X
-java:S1128"6Remove this unused import 'org.hibernate.query.Query'.(¤— ´ûÿÿÿÿ8Ô¹€Ä1
+java:S2696"6Make the enclosing method "static" or remove this set.(¡àµ–şÿÿÿÿ8™Ô¥óÄ1
+G	java:S106"+Replace this use of System.out by a logger.(°²¥°8™Ô¥óÄ1
+X	java:S125"<This block of commented-out lines of code should be removed.(ğ½…¸8œÔ¥óÄ1
+G	java:S1062"+Replace this use of System.out by a logger.(œ’á8¨Ô¥óÄ1
