@@ -190,7 +190,7 @@ public class MainViewProfesorController implements Initializable {
             if (event.getClickCount() == 2 && tablaAlumnos.getSelectionModel().getSelectedItem() != null) {
                 Alumno alumnoSeleccionado = tablaAlumnos.getSelectionModel().getSelectedItem();
                 Session.setAlumno(alumnoSeleccionado);
-                App.loadFXML("viewsProfesor/editAndShowAlumno.fxml",750,1100);
+                App.loadFXML("viewsProfesor/editAndShowAlumno.fxml",1000,1400);
             }
         });
 
@@ -332,13 +332,13 @@ public class MainViewProfesorController implements Initializable {
 
     public void verPerfilProfesor(MouseEvent mouseEvent) {
 
-        App.loadFXML("viewsProfesor/info-profesor-view.fxml",750,1100);
+        App.loadFXML("viewsProfesor/info-profesor-view.fxml",1000,1400);
 
     }
 
     public void verListaEmpresas(ActionEvent actionEvent) {
 
-        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml",750,1100);
+        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml",1000,1400);
 
 
 
@@ -354,6 +354,6 @@ public class MainViewProfesorController implements Initializable {
 
     @FXML
     public void añadirAlumno(ActionEvent actionEvent) {
-        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml",750,1100);
+        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml",1000,1400);
     }
 }

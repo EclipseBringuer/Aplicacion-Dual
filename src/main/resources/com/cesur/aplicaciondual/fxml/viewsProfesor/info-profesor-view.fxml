@@ -176,12 +176,12 @@
                   </FlowPane>
                   <FlowPane alignment="CENTER" hgap="80.0">
                      <children>
-                        <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#aceptar" text="Aceptar">
+                        <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#aceptar" styleClass="btnAceptar" text="Aceptar">
                            <font>
                               <Font name="Ebrima Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
+                        <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnCancelar" text="Cancelar">
                            <font>
                               <Font name="Ebrima Bold" size="18.0" />
                            </font>

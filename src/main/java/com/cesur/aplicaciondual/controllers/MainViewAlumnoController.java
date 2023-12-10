@@ -304,7 +304,7 @@ public class MainViewAlumnoController implements Initializable {
 
         Session.setActividad(act);
 
-        App.loadFXML("viewsAlumno/add-actividad-view.fxml",750,1100);
+        App.loadFXML("viewsAlumno/add-actividad-view.fxml",1000,1400);
 
     }
 

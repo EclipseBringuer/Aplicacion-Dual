@@ -181,13 +181,13 @@ public class ProfesorEmpresasViewController implements Initializable {
 
         Session.setEmpresa(e);
 
-        App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml",750,1100);
+        App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml",1000,1400);
     }
 
     @javafx.fxml.FXML
     public void volver(ActionEvent actionEvent) {
 
-        App.loadFXML("viewsProfesor/main-view-profesor.fxml",750,1100);
+        App.loadFXML("viewsProfesor/main-view-profesor.fxml",1000,1400);
 
     }
 }

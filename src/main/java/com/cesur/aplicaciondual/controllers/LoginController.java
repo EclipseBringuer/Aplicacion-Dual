@@ -74,7 +74,7 @@ public class LoginController implements Initializable {
 
             if (p != null) {
                 Session.setProfesor(p);
-                App.loadFXML("viewsProfesor/main-view-profesor.fxml",750,1100);
+                App.loadFXML("viewsProfesor/main-view-profesor.fxml",750,1400);
 
             } else {
                 var alumnDAO = new AlumnoDAOImp();
@@ -82,7 +82,7 @@ public class LoginController implements Initializable {
 
                 if (a != null) {
                     Session.setAlumno(a);
-                    App.loadFXML("viewsAlumno/main-view-alumno.fxml",750,1100);
+                    App.loadFXML("viewsAlumno/main-view-alumno.fxml",750,1400);
 
                 } else {
                     Alert alert = App.makeNewAlert(
