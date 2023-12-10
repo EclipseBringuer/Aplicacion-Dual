@@ -2,10 +2,13 @@ package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
+import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
+import com.cesur.aplicaciondual.domain.entities.actividad.ActividadDAOImp;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +18,10 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.util.StringConverter;
+
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Objects;
