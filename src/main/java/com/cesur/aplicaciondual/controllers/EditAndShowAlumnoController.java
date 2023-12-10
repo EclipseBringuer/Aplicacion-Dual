@@ -65,7 +65,6 @@ public class EditAndShowAlumnoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        labelAlumno.setText(Session.getAlumno().getNombre() + " " + Session.getAlumno().getApellidos());
         Image foto = new Image("img/usuario.png", false);
         marcoImagen.setFill(new ImagePattern(foto));
         comboEmpresa.setConverter(new StringConverter<Empresa>() {
@@ -105,6 +104,7 @@ public class EditAndShowAlumnoController implements Initializable {
             txtObservacion.setText(Session.getAlumno().getObservaciones());
             comboEmpresa.setValue(Session.getAlumno().getEmpresa());
             txtDni.setEditable(false);
+            labelAlumno.setText(Session.getAlumno().getNombre() + " " + Session.getAlumno().getApellidos());
         } else {
             comboEmpresa.setPromptText("Selecciona una empresa");
             datePicker.setValue(LocalDate.now());
@@ -112,6 +112,7 @@ public class EditAndShowAlumnoController implements Initializable {
             txtHorasFct.setText("0");
             btnActividades.setVisible(false);
             btnActividades.setManaged(false);
+            labelAlumno.setText("Nuevo Alumno");
         }
 
     }
@@ -146,14 +147,13 @@ public class EditAndShowAlumnoController implements Initializable {
                 alumnoDAO.update(Session.getAlumno());
             } else {
                 alumnoDAO.save(a);
+                Session.getProfesor().getAlumnos().add(a);
             }
 
             App.makeNewAlert(Alert.AlertType.INFORMATION,
                     "Guardado",
                     "Alumno " + a.getNombre() + " guardado con éxito",
                     "Pulsa aceptar para salir").showAndWait();
-
-            Session.getProfesor().getAlumnos().add(a);
 
             returnToMain(actionEvent);
         }
@@ -178,6 +178,17 @@ public class EditAndShowAlumnoController implements Initializable {
             txtDni.setText("");
             txtDni.setStyle("-fx-prompt-text-fill: red");
             txtDni.setPromptText("Introduce un DNI válido");
+        }else {
+
+            var alumnoDAO = new AlumnoDAOImp();
+            Alumno alumno = alumnoDAO.get(txtDni.getText());
+
+            if (alumno != null) {
+                isOk = false;
+                txtDni.setText("");
+                txtDni.setStyle("-fx-prompt-text-fill: red");
+                txtDni.setPromptText("DNI ya esxitente");
+            }
         }
 
         if (Objects.equals(txtPass.getText(), "") || txtPass.getText() == null) {
