@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 import java.awt.Desktop;
 import java.net.URI;
 
+/**
+ * Clase controladora para la funcionalidad de inicio de sesión.
+ */
 public class LoginController implements Initializable {
 
     @FXML
@@ -28,12 +31,23 @@ public class LoginController implements Initializable {
     @FXML
     private Label enlace;
 
+    /**
+     * Inicializa el formulario de inicio de sesión con valores predeterminados.
+     *
+     * @param url            La ubicación utilizada para resolver rutas relativas para el objeto raíz, o null si la ubicación no se conoce.
+     * @param resourceBundle Los recursos utilizados para localizar el objeto raíz, o null si el objeto raíz no estaba localizado.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         txtUser.setText("Guillen@gmail.com");
         txtPass.setText("franciscogod");
     }
 
+    /**
+     * Abre el enlace al sitio web de CESUR en el navegador web predeterminado.
+     *
+     * @param event El evento que desencadena el método.
+     */
     @FXML
     public void goToCesurWeb(Event event) {
         String url = "https://www.cesurformacion.com/centros";
@@ -44,6 +58,11 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * Valida las credenciales del usuario y navega a la vista principal respectiva.
+     *
+     * @param actionEvent El evento que desencadena el método.
+     */
     @FXML
     public void validateUser(ActionEvent actionEvent) {
         String email = txtUser.getText();

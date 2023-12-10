@@ -2,10 +2,13 @@ package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
+import com.cesur.aplicaciondual.domain.entities.actividad.Actividad;
+import com.cesur.aplicaciondual.domain.entities.actividad.ActividadDAOImp;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
 import com.cesur.aplicaciondual.domain.entities.empresa.EmpresaDAOImp;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,13 +17,14 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +58,8 @@ public class EditAndShowAlumnoController implements Initializable {
     private TextField txtTelefono;
     @javafx.fxml.FXML
     private TextField txtApellidos;
+    @javafx.fxml.FXML
+    private Button btnActividades;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -169,6 +175,13 @@ public class EditAndShowAlumnoController implements Initializable {
             txtDni.setPromptText("Introduce un DNI válido");
         }
 
+        if (Objects.equals(txtPass.getText(), "") || txtPass.getText() == null) {
+            isOk = false;
+            txtPass.setText("");
+            txtPass.setStyle("-fx-prompt-text-fill: red");
+            txtPass.setPromptText("Introduce una contraseña válida");
+        }
+
         if (!txtEmail.getText().contains("@")) {
             isOk = false;
             txtEmail.setText("");
@@ -201,5 +214,10 @@ public class EditAndShowAlumnoController implements Initializable {
             isOk = false;
         }
         return isOk;
+    }
+
+    @javafx.fxml.FXML
+    public void verActividades(ActionEvent actionEvent) {
+        App.loadFXML("viewsProfesor/view-actividades.fxml");
     }
 }
