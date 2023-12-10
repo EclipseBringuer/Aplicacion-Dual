@@ -99,6 +99,6 @@ public class ViewActividadesController {
      */
     @javafx.fxml.FXML
     public void volverAEdit(ActionEvent actionEvent) {
-        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
+        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml",750,1100);
     }
 }

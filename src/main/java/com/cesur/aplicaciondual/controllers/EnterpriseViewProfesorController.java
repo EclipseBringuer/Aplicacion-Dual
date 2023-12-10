@@ -125,7 +125,7 @@ public class EnterpriseViewProfesorController implements Initializable {
 
         Session.setEmpresa(null);
 
-        App.loadFXML("fxml/login-view.fxml");
+        App.loadFXML("fxml/login-view.fxml",700,900);
 
 
     }
@@ -135,7 +135,7 @@ public class EnterpriseViewProfesorController implements Initializable {
 
         Session.setEmpresa(null);
 
-        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml");
+        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml",750,1100);
 
 
 

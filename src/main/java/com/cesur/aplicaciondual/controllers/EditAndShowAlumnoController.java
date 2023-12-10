@@ -120,7 +120,7 @@ public class EditAndShowAlumnoController implements Initializable {
     @javafx.fxml.FXML
     public void returnToMain(ActionEvent actionEvent) {
         Session.setAlumno(null);
-        App.loadFXML("viewsProfesor/main-view-profesor.fxml");
+        App.loadFXML("viewsProfesor/main-view-profesor.fxml",750,1100);
     }
 
     @javafx.fxml.FXML
@@ -234,6 +234,6 @@ public class EditAndShowAlumnoController implements Initializable {
 
     @javafx.fxml.FXML
     public void verActividades(ActionEvent actionEvent) {
-        App.loadFXML("viewsProfesor/view-actividades.fxml");
+        App.loadFXML("viewsProfesor/view-actividades.fxml",750,1100);
     }
 }

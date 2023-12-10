@@ -69,14 +69,14 @@ public class AddActividadViewController
 
             actividadDAOImp.save(Session.getActividad());
             Session.setActividad(null);
-            App.loadFXML("viewsAlumno/main-view-alumno.fxml");
+            App.loadFXML("viewsAlumno/main-view-alumno.fxml",750,1100);
 
 
         }else{
 
             actividadDAOImp.update(Session.getActividad());
             Session.setActividad(null);
-            App.loadFXML("viewsAlumno/main-view-alumno.fxml");
+            App.loadFXML("viewsAlumno/main-view-alumno.fxml",750,1100);
 
         }
 
@@ -100,7 +100,7 @@ public class AddActividadViewController
 
         Session.setActividad(null);
 
-        App.loadFXML("viewsAlumno/main-view-alumno.fxml");
+        App.loadFXML("viewsAlumno/main-view-alumno.fxml",750,1100);
 
     }
 }

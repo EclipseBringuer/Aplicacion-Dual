@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class App extends Application {
@@ -37,13 +38,13 @@ public class App extends Application {
     }
 
 
-    public static void loadFXML(String fxml) {
+    public static void loadFXML(String fxml, int height, int width) {
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("fxml/" + fxml));
 
             Scene scene = null;
-            scene = new Scene(fxmlLoader.load());
+            scene = new Scene(fxmlLoader.load(), width, height);
             myStage.setScene(scene);
 
         } catch (IOException e) {

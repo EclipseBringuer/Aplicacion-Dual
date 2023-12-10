@@ -95,7 +95,7 @@ public class ProfesorEmpresasViewController implements Initializable {
             if (event.getClickCount() == 2 && tablaEmpresas.getSelectionModel().getSelectedItem() != null) {
                 Empresa empresaSeleccionada = (Empresa) tablaEmpresas.getSelectionModel().getSelectedItem();
                 Session.setEmpresa(empresaSeleccionada);
-                App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml");
+                App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml",750,1100);
             }
         });
 
@@ -181,13 +181,13 @@ public class ProfesorEmpresasViewController implements Initializable {
 
         Session.setEmpresa(e);
 
-        App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml");
+        App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml",750,1100);
     }
 
     @javafx.fxml.FXML
     public void volver(ActionEvent actionEvent) {
 
-        App.loadFXML("viewsProfesor/main-view-profesor.fxml");
+        App.loadFXML("viewsProfesor/main-view-profesor.fxml",750,1100);
 
     }
 }
