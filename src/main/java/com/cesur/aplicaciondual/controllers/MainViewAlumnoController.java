@@ -139,6 +139,7 @@ public class MainViewAlumnoController implements Initializable {
 
 
     private void filtrar() {
+
         listaActividadesFiltro = FXCollections.observableArrayList();
 
         actualizarTabla();
@@ -186,6 +187,8 @@ public class MainViewAlumnoController implements Initializable {
         tablaActividades.getItems().addAll(listaActividadesFiltro);
 
     }
+
+
 
     private void filtroRadio() {
 

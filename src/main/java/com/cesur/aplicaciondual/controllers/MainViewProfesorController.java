@@ -72,6 +72,8 @@ public class MainViewProfesorController implements Initializable {
     private Button btnEliminar;
     @FXML
     private TableColumn<Alumno,String> cNombreAlumno;
+    @FXML
+    private Button btnEditarAlumno;
 
 
     /**
@@ -300,11 +302,6 @@ public class MainViewProfesorController implements Initializable {
     }
 
 
-    public void añadirAlumno(MouseEvent mouseEvent) {
-
-        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
-    }
-
 
     @FXML
     public void eliminarAlumno(ActionEvent actionEvent) {
@@ -351,5 +348,12 @@ public class MainViewProfesorController implements Initializable {
 
     @FXML
     public void verPerfilProfesor(Event event) {
+    }
+
+
+
+    @FXML
+    public void añadirAlumno(ActionEvent actionEvent) {
+        App.loadFXML("viewsProfesor/editAndShowAlumno.fxml");
     }
 }

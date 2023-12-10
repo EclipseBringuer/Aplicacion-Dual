@@ -20,3 +20,4 @@
         <mapping class="com.cesur.aplicaciondual.domain.entities.empresa.Empresa"/>
     </session-factory>
 </hibernate-configuration>
+
