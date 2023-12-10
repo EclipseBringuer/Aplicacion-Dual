@@ -14,13 +14,12 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.util.StringConverter;
-
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -167,6 +166,13 @@ public class EditAndShowAlumnoController implements Initializable {
             txtDni.setText("");
             txtDni.setStyle("-fx-prompt-text-fill: red");
             txtDni.setPromptText("Introduce un DNI válido");
+        }
+
+        if (Objects.equals(txtPass.getText(), "") || txtPass.getText() == null) {
+            isOk = false;
+            txtPass.setText("");
+            txtPass.setStyle("-fx-prompt-text-fill: red");
+            txtPass.setPromptText("Introduce una contraseña válida");
         }
 
         if (!txtEmail.getText().contains("@")) {
