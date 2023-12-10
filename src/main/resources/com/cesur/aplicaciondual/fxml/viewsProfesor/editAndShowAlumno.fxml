@@ -29,7 +29,7 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                   </Circle>
-                  <Button fx:id="btnVerActividades" mnemonicParsing="false" onAction="#showActividades" styleClass="btnCancelar" text="Ver Actividades">
+                  <Button fx:id="btnActividades" mnemonicParsing="false" onAction="#verActividades" styleClass="btnCancelar" text="Ver Actividades">
                      <VBox.margin>
                         <Insets top="40.0" />
                      </VBox.margin>
@@ -47,7 +47,7 @@
       </BorderPane>
       <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F6F4EC;" HBox.hgrow="ALWAYS">
          <center>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <Label text="Datos del Alumno">
                      <font>
@@ -177,7 +177,7 @@
                                     <Font name="Ebrima" size="12.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="comboEmpresa" maxWidth="1.7976931348623157E308" prefWidth="150.0">
+                              <ComboBox id="combo" fx:id="comboEmpresa" maxWidth="1.7976931348623157E308" prefWidth="150.0">
                                  <VBox.margin>
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
@@ -210,7 +210,7 @@
                         <Font name="Ebrima" size="12.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="txtObservacion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" wrapText="true" />
+                  <TextArea fx:id="txtObservacion" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" wrapText="true" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
                         <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#saveAlumno" styleClass="btnAceptar" text="Guardar">
@@ -233,7 +233,6 @@
                   </HBox>
                </children>
             </VBox>
-         </center>
-      </BorderPane>
+         </center></BorderPane>
    </children>
 </HBox>

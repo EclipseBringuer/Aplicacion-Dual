@@ -58,6 +58,8 @@ public class EditAndShowAlumnoController implements Initializable {
     private TextField txtTelefono;
     @javafx.fxml.FXML
     private TextField txtApellidos;
+    @javafx.fxml.FXML
+    private Button btnActividades;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -212,5 +214,10 @@ public class EditAndShowAlumnoController implements Initializable {
             isOk = false;
         }
         return isOk;
+    }
+
+    @javafx.fxml.FXML
+    public void verActividades(ActionEvent actionEvent) {
+        App.loadFXML("viewsProfesor/view-actividades.fxml");
     }
 }
