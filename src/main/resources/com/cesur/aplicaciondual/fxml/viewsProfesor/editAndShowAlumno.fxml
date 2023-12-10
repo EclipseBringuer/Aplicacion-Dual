@@ -29,9 +29,17 @@
                         <Insets top="50.0" />
                      </VBox.margin>
                   </Circle>
+                  <Label fx:id="labelAlumno" text="Nombre del alumno" textFill="#ffc82c">
+                     <font>
+                        <Font name="Ebrima Bold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Label>
                   <Button fx:id="btnActividades" mnemonicParsing="false" onAction="#verActividades" styleClass="btnCancelar" text="Ver Actividades">
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
                   </Button>
                </children>
@@ -39,8 +47,11 @@
          </top>
          <bottom>
             <ImageView fitHeight="200.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" />
+               </BorderPane.margin>
                <image>
-                  <Image url="@../../../../../img/logo.png" />
+                  <Image url="@../../../../../img/logos/cesur-fp-si-te-gusta-logos-id_n-pVvES.png" />
                </image>
             </ImageView>
          </bottom>

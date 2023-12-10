@@ -60,9 +60,12 @@ public class EditAndShowAlumnoController implements Initializable {
     private TextField txtApellidos;
     @javafx.fxml.FXML
     private Button btnActividades;
+    @javafx.fxml.FXML
+    private Label labelAlumno;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        labelAlumno.setText(Session.getAlumno().getNombre() + " " + Session.getAlumno().getApellidos());
         Image foto = new Image("img/usuario.png", false);
         marcoImagen.setFill(new ImagePattern(foto));
         comboEmpresa.setConverter(new StringConverter<Empresa>() {
@@ -107,6 +110,8 @@ public class EditAndShowAlumnoController implements Initializable {
             datePicker.setValue(LocalDate.now());
             txtHorasDual.setText("0");
             txtHorasFct.setText("0");
+            btnActividades.setVisible(false);
+            btnActividades.setManaged(false);
         }
 
     }
