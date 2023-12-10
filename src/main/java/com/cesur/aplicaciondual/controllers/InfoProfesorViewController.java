@@ -75,7 +75,7 @@ public class InfoProfesorViewController implements Initializable {
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
 
-        App.loadFXML("fxml/viewsProfesor/main-view-profesor.fxml");
+        App.loadFXML("viewsProfesor/main-view-profesor.fxml");
 
 
     }
