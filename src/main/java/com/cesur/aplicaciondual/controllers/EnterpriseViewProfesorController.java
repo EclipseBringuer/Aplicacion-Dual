@@ -13,11 +13,13 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador de la vista de los datos una empresa
+ */
 public class EnterpriseViewProfesorController implements Initializable {
 
     private Image img;
     private final EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();
-    private final AlumnoDAOImp alumnoDAOImp = new AlumnoDAOImp();
 
     private boolean nueva;
 
@@ -50,7 +52,14 @@ public class EnterpriseViewProfesorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Session.setEmpresa(Session.getEmpresa());
+        if(Session.getProfesor()==null) {
+
+            Session.setEmpresa(Session.getAlumno().getEmpresa());
+
+            prepararVistaParaAlumno();
+
+        }
+
 
         if (Session.getEmpresa().getId() == null) {
 
@@ -67,6 +76,24 @@ public class EnterpriseViewProfesorController implements Initializable {
 
     }
 
+    /**
+     * Metodo que prepara la vista si el que entra es un alumno
+     */
+    private void prepararVistaParaAlumno() {
+        txtNombre.setEditable(false);
+        txtEmail.setEditable(false);
+        txtTelefono.setEditable(false);
+        txtResponsable.setEditable(false);
+        txtObservaciones.setEditable(false);
+        txtUbicacion.setEditable(false);
+        txtImagen.setEditable(false);
+        btnGuardar.setVisible(false);
+        btnCancelar.setText("Volver");
+    }
+
+    /**
+     * Metodo que rellena la informacion de los campos al entrar
+     */
     private void completarInformacion() {
 
         if (Session.getEmpresa().getNombre() != null) {
@@ -95,6 +122,9 @@ public class EnterpriseViewProfesorController implements Initializable {
 
     }
 
+    /**
+     * Metodo que asigna los cambios a la empresa
+     */
     private void asignarCampos() {
 
         Session.getEmpresa().setTelefono(txtTelefono.getText());
@@ -125,7 +155,7 @@ public class EnterpriseViewProfesorController implements Initializable {
 
         Session.setEmpresa(null);
 
-        App.loadFXML("fxml/login-view.fxml",700,900);
+        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml", 1000, 1400);
 
 
     }
@@ -133,11 +163,19 @@ public class EnterpriseViewProfesorController implements Initializable {
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
 
-        Session.setEmpresa(null);
+        if(Session.getProfesor()==null) {
 
-        App.loadFXML("viewsProfesor/profesor-empresas-view.fxml",1000,1400);
+            Session.setEmpresa(null);
+
+            App.loadFXML("viewsAlumno/main-view-alumno.fxml", 1000, 1400);
 
 
+        }else{
+            Session.setEmpresa(null);
 
+            App.loadFXML("viewsProfesor/profesor-empresas-view.fxml", 1000, 1400);
+
+        }
+        
     }
 }

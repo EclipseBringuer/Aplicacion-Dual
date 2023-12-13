@@ -9,6 +9,10 @@ import javafx.scene.control.*;
 import java.time.LocalDate;
 
 
+/**
+ * Controlador de la vista para añadir una actividad
+ * @author samu_
+ */
 public class AddActividadViewController
 {
 
@@ -46,6 +50,9 @@ public class AddActividadViewController
 
     }
 
+    /**
+     * Completa los campos de la vista
+     */
     private void completarCampos() {
         if (Session.getActividad().getHoras_realizadas() !=null) {
             txtHoras.setText(Session.getActividad().getHoras_realizadas().toString());
@@ -83,6 +90,9 @@ public class AddActividadViewController
 
     }
 
+    /**
+     * Vuelca los datos de los campos en la actividad que vamos a crear/actualizar
+     */
     private void volcarDatos() {
         Session.getActividad().setActividad_realizada(txtActividadRealizada.getText());
 

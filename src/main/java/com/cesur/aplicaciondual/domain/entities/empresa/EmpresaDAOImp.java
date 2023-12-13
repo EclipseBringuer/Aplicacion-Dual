@@ -1,6 +1,8 @@
 package com.cesur.aplicaciondual.domain.entities.empresa;
 
 import com.cesur.aplicaciondual.domain.HibernateUtil;
+import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
+import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -12,6 +14,8 @@ import java.util.List;
 public class EmpresaDAOImp implements EmpresaDAO {
 
     static final org.slf4j.Logger LOG = LoggerFactory.getLogger(EmpresaDAOImp.class);
+
+    private final AlumnoDAOImp alumnoDAOImp = new AlumnoDAOImp();
 
     @Override
     public List<Empresa> getAll() {
@@ -57,6 +61,7 @@ public class EmpresaDAOImp implements EmpresaDAO {
 
         return u;
     }
+
 
     @Override
     public Empresa save(Empresa data) {
@@ -105,4 +110,7 @@ public class EmpresaDAOImp implements EmpresaDAO {
     public void delete(Empresa data) {
 
     }
+
+
+
 }

@@ -99,10 +99,12 @@ public class MainViewAlumnoController implements Initializable {
     private Button btnAñadir;
     @javafx.fxml.FXML
     private Button btnEliminar;
+    @javafx.fxml.FXML
+    private Label lblEmpresa;
 
 
     /**
-     * Inicializador de la main view
+     * Inicializador de la main view del Alumno
      *
      * @param url            **
      * @param resourceBundle **
@@ -135,9 +137,23 @@ public class MainViewAlumnoController implements Initializable {
 
         filtroFecha.valueProperty().addListener((observable, s, t1) -> filtrar());
 
+
+        lblNombreTutor.setOnMouseClicked(e -> {
+            App.loadFXML("viewsProfesor/info-profesor-view.fxml",1000,1400);
+        });
+
+        lblEmpresa.setOnMouseClicked(e -> {
+
+            App.loadFXML("viewsProfesor/enterprise-view-profesor.fxml",1000,1400);
+
+        });
+
     }
 
 
+    /**
+     * Metodo para filtrar en cascada
+     */
     private void filtrar() {
 
         listaActividadesFiltro = FXCollections.observableArrayList();
@@ -154,6 +170,9 @@ public class MainViewAlumnoController implements Initializable {
 
     }
 
+    /**
+     * Metodo para filtrar por el nombre
+     */
     private void filtroNombre() {
 
         if (txtFiltroNombreTarea.getText() != null && !txtFiltroNombreTarea.getText().isEmpty()) {
@@ -178,6 +197,9 @@ public class MainViewAlumnoController implements Initializable {
         }
     }
 
+    /**
+     * Metodo para actualizar la tabla
+     */
     private void actualizarTabla() {
 
         tablaActividades.getItems().clear();
@@ -189,7 +211,9 @@ public class MainViewAlumnoController implements Initializable {
     }
 
 
-
+    /**
+     * Filtrado de los radio buttons
+     */
     private void filtroRadio() {
 
         if (tipo.getSelectedToggle() == radioDual) {
@@ -207,6 +231,9 @@ public class MainViewAlumnoController implements Initializable {
         }
     }
 
+    /**
+     * Filtrado por fecha
+     */
     private void filtroFecha() {
 
         if (filtroFecha.getValue() != null) {
@@ -228,6 +255,9 @@ public class MainViewAlumnoController implements Initializable {
 
     }
 
+    /**
+     * Completa la tabla de las tareas del alumno
+     */
     private void completarTabla() {
 
         cNombreActividad.setCellValueFactory((fila -> new SimpleStringProperty(fila.getValue().getActividad_realizada())));
@@ -244,6 +274,9 @@ public class MainViewAlumnoController implements Initializable {
 
     }
 
+    /**
+     * Rellena los campos de la vista
+     */
     private void completarInformacion() {
 
         lblNombreAlumno.setText(Session.getAlumno().getNombre() + " " + Session.getAlumno().getApellidos());
@@ -253,6 +286,8 @@ public class MainViewAlumnoController implements Initializable {
         labelHorasFCT.setText(Session.getAlumno().getFct() + "/600 horas Fct Completadas");
 
         lblNombreTutor.setText(Session.getAlumno().getProfesor().getNombre());
+
+        lblEmpresa.setText(Session.getAlumno().getEmpresa().getNombre());
 
         progresBarDual.setProgress((double) Session.getAlumno().getDual() / 600);
 
@@ -329,4 +364,5 @@ public class MainViewAlumnoController implements Initializable {
         });
 
     }
+
 }
