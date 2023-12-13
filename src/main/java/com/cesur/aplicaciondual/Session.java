@@ -12,6 +12,7 @@ public class Session {
     private static Actividad actividad;
     private static Empresa empresa;
 
+
     public static Profesor getProfesor() {
         return profesor;
     }
@@ -43,4 +44,6 @@ public class Session {
     public static void setEmpresa(Empresa empresa) {
         Session.empresa = empresa;
     }
+
+
 }

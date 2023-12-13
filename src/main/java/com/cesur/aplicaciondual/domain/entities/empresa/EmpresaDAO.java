@@ -1,5 +1,7 @@
 package com.cesur.aplicaciondual.domain.entities.empresa;
 
+import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
+
 import java.util.List;
 
 public interface EmpresaDAO {

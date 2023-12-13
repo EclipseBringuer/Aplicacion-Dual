@@ -2,6 +2,7 @@ package com.cesur.aplicaciondual.controllers;
 
 import com.cesur.aplicaciondual.App;
 import com.cesur.aplicaciondual.Session;
+import com.cesur.aplicaciondual.domain.entities.actividad.ActividadDAOImp;
 import com.cesur.aplicaciondual.domain.entities.alumno.Alumno;
 import com.cesur.aplicaciondual.domain.entities.alumno.AlumnoDAOImp;
 import com.cesur.aplicaciondual.domain.entities.empresa.Empresa;
@@ -20,7 +21,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +41,8 @@ public class MainViewProfesorController implements Initializable {
     private final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
     private final EmpresaDAOImp empresaDAOImp = new EmpresaDAOImp();
     private final AlumnoDAOImp alumnoDAOimp = new AlumnoDAOImp();
+
+    private final ActividadDAOImp actividadDAOImp = new ActividadDAOImp();
 
 
     @javafx.fxml.FXML
@@ -157,8 +162,8 @@ public class MainViewProfesorController implements Initializable {
 
 
         //Rellena la imagen que coincida con el profesor
-        //Image img = new Image(Session.getProfesor().getImagen(),false);
-        //circle.setFill(new ImagePattern(img));
+        Image img = new Image("img/profes/Jon.png",false);
+        circle.setFill(new ImagePattern(img));
 
     }
 
@@ -167,6 +172,10 @@ public class MainViewProfesorController implements Initializable {
         tablaAlumnos.getItems().clear();
 
         ObservableList<Alumno> listaAlumnos = FXCollections.observableList(Session.getProfesor().getAlumnos());
+
+        listaAlumnos.forEach(alumno -> {
+           alumno.setActividades(actividadDAOImp.getAll(alumno));
+        });
 
 
         cNombreAlumno.setCellValueFactory(fila -> new SimpleStringProperty(fila.getValue().getNombre()));
@@ -339,10 +348,6 @@ public class MainViewProfesorController implements Initializable {
     public void verListaEmpresas(ActionEvent actionEvent) {
 
         App.loadFXML("viewsProfesor/profesor-empresas-view.fxml",1000,1400);
-
-
-
-
 
     }
 

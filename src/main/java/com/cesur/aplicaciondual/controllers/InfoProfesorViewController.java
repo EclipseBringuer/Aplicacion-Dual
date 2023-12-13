@@ -6,6 +6,7 @@ import com.cesur.aplicaciondual.domain.entities.profesor.ProfesorDAOImp;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
 public class InfoProfesorViewController implements Initializable {
 
     private Image im;
-    private  final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
+    private final ProfesorDAOImp profesorDAOImp = new ProfesorDAOImp();
 
     @javafx.fxml.FXML
     private Circle circulo;
@@ -34,17 +35,43 @@ public class InfoProfesorViewController implements Initializable {
     private Button btnCancelar;
     @javafx.fxml.FXML
     private PasswordField txtPass;
+    @javafx.fxml.FXML
+    private Label lblContraseña;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-         im = new Image("img/profes/JoseAntonio.jpeg",false);
+        if (Session.getProfesor() == null) {
+
+            Session.setProfesor(Session.getAlumno().getProfesor());
+
+            txtNombre.setEditable(false);
+
+            txtEmail.setEditable(false);
+
+            txtApellido.setEditable(false);
+
+            txtPass.setVisible(false);
+
+            btnAceptar.setVisible(false);
+
+            btnCancelar.setText("Volver");
+
+            lblContraseña.setVisible(false);
+
+
+        }
+
+        im = new Image("img/profes/JoseAntonio.jpeg", false);
         circulo.setFill(new ImagePattern(im));
         rellenarCampos();
 
 
     }
 
+    /**
+     * Rellena los campos de la vista
+     */
     private void rellenarCampos() {
         txtNombre.setText(Session.getProfesor().getNombre());
         txtApellido.setText(Session.getProfesor().getApellidos());
@@ -60,10 +87,13 @@ public class InfoProfesorViewController implements Initializable {
 
         profesorDAOImp.update(Session.getProfesor());
 
-        App.loadFXML("fxml/login-view.fxml",700,900);
+        App.loadFXML("viewsProfesor/main-view-profesor.fxml", 1000, 1400);
 
     }
 
+    /**
+     * Asigna los datos de la vista a el profesor para actualizarlos
+     */
     private void asignarDatos() {
         Session.getProfesor().setPass(txtPass.getText());
         Session.getProfesor().setEmail(txtEmail.getText());
@@ -76,7 +106,20 @@ public class InfoProfesorViewController implements Initializable {
     @javafx.fxml.FXML
     public void cancelar(ActionEvent actionEvent) {
 
-        App.loadFXML("fxml/viewsProfesor/main-view-profesor.fxml",1000,1400);
+
+
+        if(btnCancelar.getText().equalsIgnoreCase("volver")){
+
+            App.loadFXML("viewsAlumno/main-view-alumno.fxml", 1000, 1400);
+
+            Session.setProfesor(null);
+
+
+        } else App.loadFXML("viewsProfesor/main-view-profesor.fxml", 1000, 1400);
+
+
+
+
 
 
     }
